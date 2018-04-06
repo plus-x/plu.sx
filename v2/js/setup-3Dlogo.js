@@ -313,6 +313,7 @@ function initLogo()
         var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
         window.addEventListener( 'resize', onWindowResize, false );
+        window.addEventListener( 'orientationchange', onWindowResize, false );
 
         pxxx = renderer;
     }
