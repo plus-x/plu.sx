@@ -1,0 +1,214 @@
+header {
+	text-align: center;
+}
+
+footer {
+	text-align: center;
+}
+
+#skel-panels-defaultWrapper {
+    background: url("../images/bg-bottom.png") 30% 40% repeat-x,
+                url("images/overlay.png");
+}
+
+#main > section.three {
+    background-color: rgba(245,245,245,1);
+}
+
+#main > section.four {
+    background-color: transparent;
+}
+
+#main > section.five {
+    background-color: rgba(245,245,245,1);
+}
+
+#header .icons {
+    text-indent: 0.1em !important;
+    font-size: 1.2em !important;
+}
+
+.lgreen {
+	color: #00ea00;
+	font-weight: bold;
+}
+
+.lblue {
+	color: #00adef;
+	font-weight: bold;
+}
+
+.title-large {
+	font-weight: bold;
+	font-size: 2.5em;
+	text-align: center;
+}
+
+.white {
+	color: whitesmoke;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 36px;
+}
+
+.subtitle {
+	line-height: 1.4;
+	text-align: center;
+}
+
+.image.logo {
+	width: 100%;
+	max-width: 500px;
+	margin-left: -50px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+#main > section.one {
+	background: #011724 url(../images/bg1d.jpg) no-repeat;
+	background-size: cover;
+}
+
+#main > section.two {
+	background: url(../images/bg1-br.png) repeat-x;
+	background-size: 380px auto;
+}
+
+#main > section.two h2 {
+	margin-top: 70px;
+}
+
+#header .copyright
+{
+	line-height: 1.25em;
+	background: black;
+	opacity: 0.8;
+    padding-bottom: 5px;
+}
+
+#header .copyright p
+{
+	margin: 0;
+	padding: 10px;
+	font-size: 12px;
+	text-align: center;
+}
+
+#what strong span {
+    border: 1px solid lightblue;
+    border-radius: 8px;
+    padding: 3px 8px 3px 8px;
+    background-color: rgba(30, 150, 200, 0.1);
+    margin-right: 5px;
+    margin-left: -11px;
+}
+
+.contentbox {
+	width: 50%;
+	float: left;
+	padding-right: 10px;
+}
+
+.contentbox2 {
+	width: 50%;
+	float: left;
+	height: 1000px;
+	border-left: 1px solid #ddd;
+	padding-left: 10px;
+	margin-top: 0;
+}
+
+.bcard {
+	width: 50%;
+}
+
+.disc {
+	list-style: disc;
+}
+
+.disc li {
+	margin-left: 20px;
+	font-size: 18px;
+}
+
+.team-pic {
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 10px;
+	border: 1px solid #dedede;
+}
+
+section#team a, section#team a b {
+	font-size: 18px;
+	color: #00aeef;
+}
+
+.linkPad {
+	margin-left: 40px;
+}
+
+ul.bordered-item-list li div.bordered-item-div {
+	border: 1px solid #ccc;
+	padding: 5px;
+    margin-right: 10px;
+    background: rgba(30, 150, 200, 0.1);
+    min-height: 200px;
+}
+
+.button-orig {
+    position: relative;
+    display: inline-block;
+    border-radius: 2em;
+    color: whitesmoke !important;
+    text-decoration: none;
+    padding: 0.75em 2.5em 0.75em 2.5em;
+    background-color: #00adef;
+    border: 0;
+    cursor: pointer;
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url('images/overlay.png');
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url('images/overlay.png');
+    background-image: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url('images/overlay.png');
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url('images/overlay.png');
+    background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url('images/overlay.png');
+    -moz-transition: background-color 0.35s ease-in-out;
+    -webkit-transition: background-color 0.35s ease-in-out;
+    -o-transition: background-color 0.35s ease-in-out;
+    -ms-transition: background-color 0.35s ease-in-out;
+    transition: background-color 0.35s ease-in-out;
+}
+
+footer a {
+	text-decoration: none;
+    color: inherit;
+    border-bottom: dotted 1px rgba(128,128,128,0.5);
+    -moz-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -webkit-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -o-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -ms-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    outline: 0;
+}
+
+.extra-pad {
+    padding: 15px !important;
+}
+
+.slides-container {
+    border-top: 1px solid #00aeef;
+    border-bottom: 1px solid #00aeef;
+}
+
+.slides-container div {
+    cursor: pointer;
+    margin: 0 auto;
+    background: black;
+    color: white;
+}
+
+.slick-slide img {
+    margin: 0 auto;
+}

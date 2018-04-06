@@ -1,0 +1,70 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: black !important;
+}
+
+#container {
+    margin: 0;
+    padding: 0;
+}
+
+#pinContainer {
+    width: 100%;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+    -webkit-perspective: 1000;
+            perspective: 1000;
+}
+
+#slideContainer {
+    width: 400%; /* to contain 4 panels, each with 100% of window width */
+    height: 100%;
+}
+
+.panel {
+    height: 100%;
+    width: 25%; /* relative to parent -> 25% of 400% = 100% of window width */
+    float: left;
+}
+
+.main-panel {
+    background: url(../../images/bg/hong-kong-china.jpg) no-repeat;
+    background-size: cover;
+}
+
+/*
+    colors
+*/
+.blue {
+    background-color: #3883d8;
+}
+.turqoise {
+    background-color: #38ced7;
+}
+.brown {
+    background-color: #a66f28;
+}
+.bordeaux {
+    background-color: #953543;
+}
+.skin {
+    background-color: #ED9F4C;
+}
+.black {
+    background-color: #000000;
+}
+.white {
+    background-color: #FFFFFF;
+}
+.red {
+    background-color: #cf3535;
+}
+.green {
+    background-color: #22d659;
+}
+.orange {
+    background-color: #ea6300;
+}
