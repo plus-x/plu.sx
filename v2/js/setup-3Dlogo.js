@@ -285,7 +285,7 @@ function initLogo()
         //scene.background = new THREE.Color( 0x000000 );
 
         camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 80000 );
-        camera.position.set( 0, 0, 1500 );
+        camera.position.set( 0, 0, 1900 );
 
         var group = new THREE.Group();
         scene.add( group );
@@ -331,7 +331,7 @@ function initLogo()
 
         obj.amounts = [ 30, 30 ];
         obj.colors =  [ 0x00EA00, 0x00AEEF ];
-        obj.center = { x: (window.innerWidth/1.6)*0.1, y: (window.innerHeight/1.6)*0.1 };
+        obj.center = { x: 80, y: 30 };
 
         return obj;
     }
