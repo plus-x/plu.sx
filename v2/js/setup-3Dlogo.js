@@ -272,7 +272,7 @@ function initLogo()
         }
     };
 
-    var renderer, stats, scene, camera;
+    var renderer, stats, scene, camera, controls;
 
     init();
     animate();
@@ -305,24 +305,27 @@ function initLogo()
         addGeoObject( group, obj );
 
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-        renderer.setClearColor( 0x000000, 0.7 ); // the default
+        renderer.setClearColor( 0x000000, 0.1 ); // the default
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
         container.appendChild( renderer.domElement );
 
-        var controls = new THREE.OrbitControls( camera, renderer.domElement );
+        controls = new THREE.OrbitControls( camera, renderer.domElement );
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.13;
+        controls.maxPolarAngle = 2.5;
+        controls.minPolarAngle = 0.5;
 
         window.addEventListener( 'resize', onWindowResize, false );
-        window.addEventListener( 'orientationchange', onWindowResize, false );
 
-        pxxx = renderer;
+        //pxxx = renderer;
     }
 
     function initSVGObject()
     {
         var obj = {};
 
-        // The geo data from Taipei City, Keelung City, Taipei County in SVG form
+        // +x Logo
         obj.paths =
         [
             // +x Logo
@@ -331,7 +334,7 @@ function initLogo()
         ];
 
         obj.amounts = [ 30, 30 ];
-        obj.colors =  [ 0x00EA00, 0x00AEEF ];
+        obj.colors =  [ 0x00AEEF, 0x00EA00 ];
         obj.center = { x: 80, y: 30 };
 
         return obj;
@@ -354,5 +357,6 @@ function initLogo()
     function render()
     {
         renderer.render( scene, camera );
+        controls.update();
     }
 }
