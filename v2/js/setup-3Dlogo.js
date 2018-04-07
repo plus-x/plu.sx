@@ -305,7 +305,7 @@ function initLogo()
         addGeoObject( group, obj );
 
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-        renderer.setClearColor( 0x000000, 0.1 ); // the default
+        renderer.setClearColor( 0x000000, 0.6 ); // the default
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
         container.appendChild( renderer.domElement );
