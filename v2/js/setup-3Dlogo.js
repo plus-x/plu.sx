@@ -316,9 +316,12 @@ function initLogo()
         controls.maxPolarAngle = 2.5;
         controls.minPolarAngle = 0.5;
 
+        controls.enabled = false;
+
         window.addEventListener( 'resize', onWindowResize, false );
 
-        //pxxx = renderer;
+        $.PX.ThreeRenderer = renderer;
+        $.PX.ThreeOrbitControls = controls;
     }
 
     function initSVGObject()

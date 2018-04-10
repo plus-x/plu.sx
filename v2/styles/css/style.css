@@ -24,7 +24,7 @@ html, body {
 
 /* line 22, ../sass/style.scss */
 #slideContainer {
-  width: 400%;
+  width: 100%;
   /* to contain 4 panels, each with 100% of window width */
   height: 100%;
 }
@@ -32,13 +32,18 @@ html, body {
 /* line 27, ../sass/style.scss */
 .panel {
   height: 100%;
-  width: 25%;
-  /* relative to parent -> 25% of 400% = 100% of window width */
+  width: 100%;
   float: left;
 }
 
 /* line 33, ../sass/style.scss */
+.fuck {
+  height: 10%;
+}
+
+/* line 37, ../sass/style.scss */
 .main-panel {
+  width: 100%;
   background: url(../../images/bg/hong-kong-china.jpg) no-repeat;
   background-size: cover;
 }
@@ -46,52 +51,52 @@ html, body {
 /*
     colors
 */
-/* line 41, ../sass/style.scss */
+/* line 46, ../sass/style.scss */
 .blue {
   background-color: #3883d8;
 }
 
-/* line 44, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 .turqoise {
   background-color: #38ced7;
 }
 
-/* line 47, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .brown {
   background-color: #a66f28;
 }
 
-/* line 50, ../sass/style.scss */
+/* line 55, ../sass/style.scss */
 .bordeaux {
   background-color: #953543;
 }
 
-/* line 53, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .skin {
   background-color: #ED9F4C;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 .black {
   background-color: #000000;
 }
 
-/* line 59, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 .white {
   background-color: #FFFFFF;
 }
 
-/* line 62, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 .red {
   background-color: #cf3535;
 }
 
-/* line 65, ../sass/style.scss */
+/* line 70, ../sass/style.scss */
 .green {
   background-color: #22d659;
 }
 
-/* line 68, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 .orange {
   background-color: #ea6300;
 }

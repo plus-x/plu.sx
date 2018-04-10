@@ -276,6 +276,20 @@ THREE.OrbitControls = function ( object, domElement ) {
 	var dollyEnd = new THREE.Vector2();
 	var dollyDelta = new THREE.Vector2();
 
+
+	// =======================================================
+	// HACK: Expose some internals so this control
+	// Can be manipulated externally (ScrollMagic integration)
+	// =======================================================
+
+	this.sphericalDelta = sphericalDelta;
+	this.rotateStart = rotateStart;
+	this.rotateEnd = rotateEnd;
+	this.rotateDelta = rotateDelta;
+
+	// =================== END HACK ==========================
+
+
 	function getAutoRotationAngle() {
 
 		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
