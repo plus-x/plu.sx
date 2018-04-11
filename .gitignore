@@ -1,2 +1,3 @@
 # Special Directories
-_*/
+_*
+*.sass-cache/*
