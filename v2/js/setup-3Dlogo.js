@@ -4,9 +4,7 @@ function initLogo()
 
     var plusxLogo_SVGPaths =
         {
-            paths:
-            [
-                // +x Logo
+            paths: [
                 "M77.9,0h27.2l13,20.8L131.4,0h26.7l-26,37.6l27,38.8h-27.3l-14.7-20.8l-14.4,20.8H76.6l26.3-38.7L77.9,0z",
                 "M25.8,49.8v26.6h22.5V49.7H74V26.7H48.2V0H25.8v26.6H0v23.1L25.8,49.8z"
             ],
@@ -17,15 +15,13 @@ function initLogo()
 
         d33d_SVG = {},
 
-        container = document.getElementById( 'container' ),
+        container = $( '#container' ),
 
         scene, camera, renderer, controls,
-        particleLight, ambientLight, directionalLight,
+        ambientLight, directionalLight,
 
-        plusxLogo, particleGroup,
-
-        SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50,
-        particles, particle, count = 0,
+        plusxLogo, particleGroup, particles, particle,
+        particleData, particleCount = 0,
 
         mouseX = 0, mouseY = 0,
         windowHalfX = window.innerWidth / 2,
@@ -40,6 +36,12 @@ function initLogo()
 
     function init()
     {
+        particleData = {
+            SEPARATION: 100,
+            AMOUNTX: 50,
+            AMOUNTY: 50
+        };
+
         // This is an SVG renderer from D3-3D, used inline in this example:
         // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
         // D3-3D: https://github.com/Niekes/d3-3d
@@ -67,16 +69,6 @@ function initLogo()
         ambientLight = new THREE.AmbientLight( 0x000000, 0.2 );
         scene.add( ambientLight );
 
-        particleLight = new THREE.Mesh( new THREE.SphereBufferGeometry( 4, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
-		scene.add( particleLight );
-
-		var pointLight = new THREE.PointLight( 0xffffff, 2, 800 );
-		particleLight.add( pointLight );
-
-        //var helper = new THREE.GridHelper( 160, 10 );
-        //helper.rotation.x = Math.PI / 2;
-        //plusxLogo.add( helper );
-
         particles = new Array();
         particleGroup = new THREE.Group();
         particleGroup.position.set( 0, -100, 0 );
@@ -86,13 +78,13 @@ function initLogo()
             material = new THREE.MeshLambertMaterial( {color: 0xffffff} ),
             i = 0;
 
-        for ( var ix = 0; ix < AMOUNTX; ix++ )
+        for ( var ix = 0; ix < particleData.AMOUNTX; ix++ )
         {
-			for ( var iy = 0; iy < AMOUNTY; iy++ )
+			for ( var iy = 0; iy < particleData.AMOUNTY; iy++ )
             {
 				particle = particles[ i++ ] = new THREE.Mesh( geometry, material );
-				particle.position.x = ix * SEPARATION - (( AMOUNTX * SEPARATION ) / 2 );
-				particle.position.z = iy * SEPARATION - (( AMOUNTY * SEPARATION ) / 2 );
+				particle.position.x = ix * particleData.SEPARATION - (( particleData.AMOUNTX * particleData.SEPARATION ) / 2 );
+				particle.position.z = iy * particleData.SEPARATION - (( particleData.AMOUNTY * particleData.SEPARATION ) / 2 );
                 particleGroup.add( particle );
 			}
 		}
@@ -105,7 +97,7 @@ function initLogo()
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.gammaInput = true;
 		renderer.gammaOutput = true;
-        container.appendChild( renderer.domElement );
+        container.append( renderer.domElement );
 
         controls = new THREE.OrbitControls( camera, renderer.domElement );
         controls.enableDamping = true;
@@ -168,30 +160,24 @@ function initLogo()
 
     function render()
     {
-        var timer = Date.now() * 0.00025,
-            i = 0;
+        var i = 0;
 
-		camera.lookAt( scene.position );
+        camera.lookAt( scene.position );
 
-		particleLight.position.x = Math.sin( timer * 7 ) * 300;
-		particleLight.position.y = Math.cos( timer * 5 ) * 400;
-		particleLight.position.z = Math.cos( timer * 3 ) * 300;
-
-        for ( var ix = 0; ix < AMOUNTX; ix ++ )
+        for ( var ix = 0; ix < particleData.AMOUNTX; ix ++ )
         {
-			for ( var iy = 0; iy < AMOUNTY; iy ++ )
+			for ( var iy = 0; iy < particleData.AMOUNTY; iy ++ )
             {
 				particle = particles[ i++ ];
-				particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-					( Math.sin( ( iy + count ) * 0.5 ) * 50 );
-				particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
-					( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
+				particle.position.y = ( Math.sin( ( ix + particleCount ) * 0.3 ) * 50 ) +
+					( Math.sin( ( iy + particleCount ) * 0.5 ) * 50 );
+				particle.scale.x = particle.scale.y = ( Math.sin( ( ix + particleCount ) * 0.3 ) + 1 ) * 4 +
+					( Math.sin( ( iy + particleCount ) * 0.5 ) + 1 ) * 4;
 			}
 		}
 
         renderer.render( scene, camera );
         controls.update();
-
-        count += 0.1;
+        particleCount += 0.1;
     }
 }
