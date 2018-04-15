@@ -2,7 +2,7 @@ function initLogo()
 {
     if ( !Detector.webgl ) Detector.addGetWebGLMessage();
 
-    var pxLogo_SVGPaths =
+    var plusxLogo_SVGPaths =
         {
             paths:
             [
@@ -20,32 +20,20 @@ function initLogo()
         container = document.getElementById( 'container' ),
 
         scene, camera, renderer, controls,
-        particleLight, ambientLight, directionalLight, pxLogo,
+        particleLight, ambientLight, directionalLight,
 
-        SEPARATION = 100, AMOUNTX = 25, AMOUNTY = 25,
+        plusxLogo, particleGroup,
+
+        SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50,
         particles, particle, count = 0,
 
         mouseX = 0, mouseY = 0,
         windowHalfX = window.innerWidth / 2,
 		windowHalfY = window.innerHeight / 2,
 
-        reflectionCube = new THREE.CubeTextureLoader()
-        .setPath( 'js/vendor/three.js/textures/cube/SwedishRoyalCastle/' )
-        .load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] ),
+        reflectionCube = new THREE.CubeTextureLoader(),
 
-        PI2 = Math.PI * 2,
-
-        scMaterial = new THREE.SpriteCanvasMaterial({
-            color: 0xffffff,
-            program: function ( context )
-            {
-                context.beginPath();
-                context.arc( 0, 0, 0.5, 0, PI2, true );
-                context.fill();
-            }
-        }),
-
-        i = 0;
+        PI2 = Math.PI * 2;
 
     init();
     animate();
@@ -57,19 +45,20 @@ function initLogo()
         // D3-3D: https://github.com/Niekes/d3-3d
         THREE.D33D_SVG( d33d_SVG );
 
-		reflectionCube.format = THREE.RGBFormat;
+        // reflectionCube.format = THREE.RGBFormat;
+        // reflectionCube.setPath( 'js/vendor/three.js/textures/cube/SwedishRoyalCastle/' )
+        // .load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] ),
 
         scene = new THREE.Scene();
-
         scene.background = reflectionCube;
 
         camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 80000 );
         camera.position.set( 0, 0, 3000 );
 
-        pxLogo = new THREE.Group();
-        d33d_SVG.addGeoObject( pxLogo, pxLogo_SVGPaths );
-        pxLogo.scale.set( 2, 2, 2 );
-        scene.add( pxLogo );
+        plusxLogo = new THREE.Group();
+        d33d_SVG.addGeoObject( plusxLogo, plusxLogo_SVGPaths );
+        plusxLogo.scale.set( 2, 2, 2 );
+        scene.add( plusxLogo );
 
         directionalLight = new THREE.DirectionalLight( 0xffffff, 0.2 );
         directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
@@ -86,23 +75,29 @@ function initLogo()
 
         //var helper = new THREE.GridHelper( 160, 10 );
         //helper.rotation.x = Math.PI / 2;
-        //pxLogo.add( helper );
+        //plusxLogo.add( helper );
 
         particles = new Array();
+        particleGroup = new THREE.Group();
+        particleGroup.position.set( 0, -100, 0 );
+        particleGroup.scale.set( 0.1, 0.1, 1 );
 
-        var geometry = new THREE.SphereGeometry( 1, 20, 20 );
-        var material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
+        var geometry = new THREE.SphereGeometry( 1, 20, 20 ),
+            material = new THREE.MeshLambertMaterial( {color: 0xffffff} ),
+            i = 0;
 
-        for ( var ix = 0; ix < AMOUNTX; ix ++ )
+        for ( var ix = 0; ix < AMOUNTX; ix++ )
         {
-			for ( var iy = 0; iy < AMOUNTY; iy ++ )
+			for ( var iy = 0; iy < AMOUNTY; iy++ )
             {
-				particle = particles[ i ++ ] = new THREE.Mesh( geometry, material );
-				particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
-				particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
-				scene.add( particle );
+				particle = particles[ i++ ] = new THREE.Mesh( geometry, material );
+				particle.position.x = ix * SEPARATION - (( AMOUNTX * SEPARATION ) / 2 );
+				particle.position.z = iy * SEPARATION - (( AMOUNTY * SEPARATION ) / 2 );
+                particleGroup.add( particle );
 			}
 		}
+
+        scene.add( particleGroup );
 
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
         renderer.setClearColor( 0x000000, 0.6 ); // the default
