@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0 initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=0.9, maximum-scale=0.9 initial-scale=0.9">
 
 		<title>+x</title>
 
@@ -17,10 +17,14 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.min.js"></script>
 		<script src="js/vendor/three.js/plugins/controls/OrbitControls.js"></script>
-		<!-- <script src="js/vendor/three.js/plugins/libs/stats.min.js"></script> -->
+		<script src="js/vendor/three.js/plugins/Detector.js"></script>
+        <script src="js/vendor/three.js/plugins/renderers/Projector.js"></script>
+		<script src="js/vendor/three.js/plugins/renderers/CanvasRenderer.js"></script>
+        <script src="js/vendor/three.js/plugins/renderers/D33D_SVG_Renderer.js"></script>
+		<script src="js/vendor/three.js/plugins/libs/stats.min.js"></script>
 	</head>
 	<body>
-		<div id="container" class="panel main-panel"></div>
+        <div id="container" class="panel main-panel"></div>
 
 		<script src="js/init.js"></script>
 		<script src="js/setup-3Dlogo.js"></script>

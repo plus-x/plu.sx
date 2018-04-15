@@ -4,15 +4,16 @@ html, body {
   padding: 0;
   height: 100%;
   background: black !important;
+  color: white;
 }
 
-/* line 8, ../sass/style.scss */
+/* line 9, ../sass/style.scss */
 #container {
   margin: 0;
   padding: 0;
 }
 
-/* line 13, ../sass/style.scss */
+/* line 14, ../sass/style.scss */
 #pinContainer {
   width: 100%;
   height: 100%;
@@ -22,26 +23,21 @@ html, body {
   perspective: 1000;
 }
 
-/* line 22, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 #slideContainer {
   width: 100%;
   /* to contain 4 panels, each with 100% of window width */
   height: 100%;
 }
 
-/* line 27, ../sass/style.scss */
+/* line 28, ../sass/style.scss */
 .panel {
   height: 100%;
   width: 100%;
   float: left;
 }
 
-/* line 33, ../sass/style.scss */
-.fuck {
-  height: 10%;
-}
-
-/* line 37, ../sass/style.scss */
+/* line 34, ../sass/style.scss */
 .main-panel {
   width: 100%;
   background: url(../../images/bg/hong-kong-china.jpg) no-repeat;
@@ -51,52 +47,52 @@ html, body {
 /*
     colors
 */
-/* line 46, ../sass/style.scss */
+/* line 43, ../sass/style.scss */
 .blue {
   background-color: #3883d8;
 }
 
-/* line 49, ../sass/style.scss */
+/* line 46, ../sass/style.scss */
 .turqoise {
   background-color: #38ced7;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 .brown {
   background-color: #a66f28;
 }
 
-/* line 55, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .bordeaux {
   background-color: #953543;
 }
 
-/* line 58, ../sass/style.scss */
+/* line 55, ../sass/style.scss */
 .skin {
   background-color: #ED9F4C;
 }
 
-/* line 61, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .black {
   background-color: #000000;
 }
 
-/* line 64, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 .white {
   background-color: #FFFFFF;
 }
 
-/* line 67, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 .red {
   background-color: #cf3535;
 }
 
-/* line 70, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 .green {
   background-color: #22d659;
 }
 
-/* line 73, ../sass/style.scss */
+/* line 70, ../sass/style.scss */
 .orange {
   background-color: #ea6300;
 }

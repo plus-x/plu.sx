@@ -72,19 +72,22 @@ function initScrollMagic()
             prevScrollPos = curScrollPos;
         }
 
-        controls.rotateStart.set( 0, curScrollPos );
-        controls.rotateEnd.set( 0, curScrollPos - direction/10 );
-        controls.rotateDelta.subVectors( controls.rotateEnd, controls.rotateStart ).multiplyScalar( controls.rotateSpeed );
+        if ( controls )
+        {
+            controls.rotateStart.set( 0, curScrollPos );
+            controls.rotateEnd.set( 0, curScrollPos - direction/10 );
+            controls.rotateDelta.subVectors( controls.rotateEnd, controls.rotateStart ).multiplyScalar( controls.rotateSpeed );
 
-        var element = controls.domElement === document ? controls.domElement.body : controls.domElement;
+            var element = controls.domElement === document ? controls.domElement.body : controls.domElement;
 
-        // Rotates horizontally
-        //controls.sphericalDelta.theta -= ( 2 * Math.PI * controls.rotateDelta.x / element.clientWidth );
+            // Rotates horizontally
+            //controls.sphericalDelta.theta -= ( 2 * Math.PI * controls.rotateDelta.x / element.clientWidth );
 
-        // Rotates vertically
-        controls.sphericalDelta.phi -= ( 2 * Math.PI * controls.rotateDelta.y / element.clientHeight );
+            // Rotates vertically
+            controls.sphericalDelta.phi -= ( 2 * Math.PI * controls.rotateDelta.y / element.clientHeight );
 
-        controls.rotateStart.copy( controls.rotateEnd );
-        controls.update();
+            controls.rotateStart.copy( controls.rotateEnd );
+            controls.update();
+        }
     });
 }
