@@ -2,7 +2,7 @@ function initLogo()
 {
     if ( !Detector.webgl ) Detector.addGetWebGLMessage();
 
-    var SVG_Obj =
+    var pxLogo_SVGPaths =
         {
             paths:
             [
@@ -20,9 +20,9 @@ function initLogo()
         container = document.getElementById( 'container' ),
 
         scene, camera, renderer, controls,
-        particleLight, ambientLight, directionalLight, group,
+        particleLight, ambientLight, directionalLight, pxLogo,
 
-        SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50,
+        SEPARATION = 100, AMOUNTX = 25, AMOUNTY = 25,
         particles, particle, count = 0,
 
         mouseX = 0, mouseY = 0,
@@ -64,11 +64,12 @@ function initLogo()
         scene.background = reflectionCube;
 
         camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 80000 );
-        camera.position.set( 0, 0, 1900 );
+        camera.position.set( 0, 0, 3000 );
 
-        group = new THREE.Group();
-        d33d_SVG.addGeoObject( group, SVG_Obj );
-        scene.add( group );
+        pxLogo = new THREE.Group();
+        d33d_SVG.addGeoObject( pxLogo, pxLogo_SVGPaths );
+        pxLogo.scale.set( 2, 2, 2 );
+        scene.add( pxLogo );
 
         directionalLight = new THREE.DirectionalLight( 0xffffff, 0.2 );
         directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
@@ -85,12 +86,12 @@ function initLogo()
 
         //var helper = new THREE.GridHelper( 160, 10 );
         //helper.rotation.x = Math.PI / 2;
-        //group.add( helper );
+        //pxLogo.add( helper );
 
         particles = new Array();
 
-        var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-        var material = new THREE.MeshPhongMaterial( {color: 0x333333} );
+        var geometry = new THREE.SphereGeometry( 1, 20, 20 );
+        var material = new THREE.MeshLambertMaterial( {color: 0xffffff} );
 
         for ( var ix = 0; ix < AMOUNTX; ix ++ )
         {
