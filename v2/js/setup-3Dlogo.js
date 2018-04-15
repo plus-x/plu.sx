@@ -1,7 +1,9 @@
 function initLogo()
 {
+    // Shows a warning error message if no webgl support detected
     if ( !Detector.webgl ) Detector.addGetWebGLMessage();
 
+    // +x Logo exported from Adobe Illustrator source artwork
     var plusxLogo_SVGPaths =
         {
             paths: [
@@ -13,58 +15,66 @@ function initLogo()
             center:  { x: 80, y: 30 }
         },
 
+        // DOM elements
         container = $( '#container' ),
 
+        // Scene elements
         scene, camera, renderer, controls,
         ambientLight, directionalLight,
+        plusxLogo, particleGroup, particles = [], particle,
+        particleData, particleSpeed = 0,
 
         // This is an SVG renderer from D3-3D, used inline in this example:
         // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
         // D3-3D: https://github.com/Niekes/d3-3d
         d33d_SVG = new THREE.D33D_SVG(),
 
-        plusxLogo, particleGroup, particles, particle,
-        particleData, particleCount = 0,
-
-        mouseX = 0, mouseY = 0,
+        // Utility variables
         windowHalfX = window.innerWidth / 2,
 		windowHalfY = window.innerHeight / 2,
-
-        PI2 = Math.PI * 2;
+        PI2 = Math.PI * 2,
+        mouseX = 0, mouseY = 0;
 
     init();
     animate();
 
     function init()
     {
+        // Settings for the particle wave
         particleData = {
             SEPARATION: 100,
             AMOUNTX: 50,
             AMOUNTY: 50
         };
 
+        // Create the main scene
         scene = new THREE.Scene();
 
+        // Set a camera with a deep field of view
         camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 80000 );
         camera.position.set( 0, 0, 3000 );
 
+        // Set up the logo
         plusxLogo = new THREE.Group();
         d33d_SVG.addGeoObject( plusxLogo, plusxLogo_SVGPaths );
         plusxLogo.scale.set( 2, 2, 2 );
 
+        // Set up some lights
         ambientLight = new THREE.AmbientLight( 0x000000, 0.2 );
         directionalLight = new THREE.DirectionalLight( 0xffffff, 0.2 );
         directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
 
-        particles = new Array();
+        // Create a group to hold all the particles
         particleGroup = new THREE.Group();
         particleGroup.position.set( 0, -100, 0 );
         particleGroup.scale.set( 0.1, 0.1, 1 );
 
+        // Create sphere and material for the particles
         var geometry = new THREE.SphereGeometry( 1, 20, 20 ),
             material = new THREE.MeshLambertMaterial( {color: 0xffffff} ),
             i = 0;
 
+        // Create all the particles and insert each into the particleGroup
         for ( var ix = 0; ix < particleData.AMOUNTX; ix++ )
         {
 			for ( var iy = 0; iy < particleData.AMOUNTY; iy++ )
@@ -72,39 +82,51 @@ function initLogo()
 				particle = particles[ i++ ] = new THREE.Mesh( geometry, material );
 				particle.position.x = ix * particleData.SEPARATION - (( particleData.AMOUNTX * particleData.SEPARATION ) / 2 );
 				particle.position.z = iy * particleData.SEPARATION - (( particleData.AMOUNTY * particleData.SEPARATION ) / 2 );
+
                 particleGroup.add( particle );
 			}
 		}
 
+        // Add all our elements to the scene
         scene.add( plusxLogo );
         scene.add( directionalLight );
         scene.add( ambientLight );
         scene.add( particleGroup );
 
+        // Create our renderer
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-        renderer.setClearColor( 0x000000, 0.6 ); // the default
+        renderer.setClearColor( 0x000000, 0.6 ); // Allows transparent background
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( window.innerWidth, window.innerHeight );
         renderer.gammaInput = true;
 		renderer.gammaOutput = true;
+
+        // Adds the webgl canvas element to the DOM
         container.append( renderer.domElement );
 
+        // Set up the Orbit Controls allowing mouse interactivity
         controls = new THREE.OrbitControls( camera, renderer.domElement );
         controls.enableDamping = true;
         controls.dampingFactor = 0.13;
         controls.maxPolarAngle = 2.5;
         controls.minPolarAngle = 0.5;
+
+        // Since we're connecting the controls to scroll x/y position,
+        // with ScrollMagic, disable the orbit controls here
         controls.enabled = false;
 
+        // Set up event listeners
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
         window.addEventListener( 'resize', onWindowResize, false );
 
+        // Set global references for access in other scripts
         $.PX.ThreeRenderer = renderer;
         $.PX.ThreeOrbitControls = controls;
     }
 
+    // Redraw / render
     function onWindowResize()
     {
         windowHalfX = window.innerWidth / 2;
@@ -151,22 +173,23 @@ function initLogo()
     {
         var i = 0;
 
-        camera.lookAt( scene.position );
-
+        // Creates the wave animation for the particles
         for ( var ix = 0; ix < particleData.AMOUNTX; ix ++ )
         {
 			for ( var iy = 0; iy < particleData.AMOUNTY; iy ++ )
             {
 				particle = particles[ i++ ];
-				particle.position.y = ( Math.sin( ( ix + particleCount ) * 0.3 ) * 50 ) +
-					( Math.sin( ( iy + particleCount ) * 0.5 ) * 50 );
-				particle.scale.x = particle.scale.y = ( Math.sin( ( ix + particleCount ) * 0.3 ) + 1 ) * 4 +
-					( Math.sin( ( iy + particleCount ) * 0.5 ) + 1 ) * 4;
+				particle.position.y = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) * 50 ) +
+					( Math.sin( ( iy + particleSpeed ) * 0.5 ) * 50 );
+				particle.scale.x = particle.scale.y = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) + 1 ) * 4 +
+					( Math.sin( ( iy + particleSpeed ) * 0.5 ) + 1 ) * 4;
 			}
 		}
 
+        // Controls the speed of the animation
+        particleSpeed += 0.1;
+
         renderer.render( scene, camera );
         controls.update();
-        particleCount += 0.1;
     }
 }
