@@ -33,13 +33,7 @@ function initWebGLScene()
         // This is an SVG renderer from D3-3D, used inline in this example:
         // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
         // D3-3D: https://github.com/Niekes/d3-3d
-        d33d_SVG = {},
-
-        // Utility variables
-        windowHalfX = window.innerWidth / 2,
-		windowHalfY = window.innerHeight / 2,
-        PI2 = Math.PI * 2,
-        mouseX = 0, mouseY = 0;
+        d33d_SVG = {};
 
     // Just slaps on functions onto the empty d33d_SVG object literal
     THREE.D33D_SVG( d33d_SVG );
@@ -128,9 +122,6 @@ function initWebGLScene()
     // Redraw / render
     function onWindowResize()
     {
-        windowHalfX = window.innerWidth / 2;
-		windowHalfY = window.innerHeight / 2;
-
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight );
