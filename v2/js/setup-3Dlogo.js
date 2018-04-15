@@ -13,12 +13,15 @@ function initLogo()
             center:  { x: 80, y: 30 }
         },
 
-        d33d_SVG = {},
-
         container = $( '#container' ),
 
         scene, camera, renderer, controls,
         ambientLight, directionalLight,
+
+        // This is an SVG renderer from D3-3D, used inline in this example:
+        // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
+        // D3-3D: https://github.com/Niekes/d3-3d
+        d33d_SVG = new THREE.D33D_SVG(),
 
         plusxLogo, particleGroup, particles, particle,
         particleData, particleCount = 0,
@@ -26,8 +29,6 @@ function initLogo()
         mouseX = 0, mouseY = 0,
         windowHalfX = window.innerWidth / 2,
 		windowHalfY = window.innerHeight / 2,
-
-        reflectionCube = new THREE.CubeTextureLoader(),
 
         PI2 = Math.PI * 2;
 
@@ -42,17 +43,7 @@ function initLogo()
             AMOUNTY: 50
         };
 
-        // This is an SVG renderer from D3-3D, used inline in this example:
-        // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
-        // D3-3D: https://github.com/Niekes/d3-3d
-        THREE.D33D_SVG( d33d_SVG );
-
-        // reflectionCube.format = THREE.RGBFormat;
-        // reflectionCube.setPath( 'js/vendor/three.js/textures/cube/SwedishRoyalCastle/' )
-        // .load( [ 'px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg' ] ),
-
         scene = new THREE.Scene();
-        scene.background = reflectionCube;
 
         camera = new THREE.PerspectiveCamera( 10, window.innerWidth / window.innerHeight, 1, 80000 );
         camera.position.set( 0, 0, 3000 );
@@ -60,14 +51,10 @@ function initLogo()
         plusxLogo = new THREE.Group();
         d33d_SVG.addGeoObject( plusxLogo, plusxLogo_SVGPaths );
         plusxLogo.scale.set( 2, 2, 2 );
-        scene.add( plusxLogo );
-
-        directionalLight = new THREE.DirectionalLight( 0xffffff, 0.2 );
-        directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
-        scene.add( directionalLight );
 
         ambientLight = new THREE.AmbientLight( 0x000000, 0.2 );
-        scene.add( ambientLight );
+        directionalLight = new THREE.DirectionalLight( 0xffffff, 0.2 );
+        directionalLight.position.set( 0.75, 0.75, 1.0 ).normalize();
 
         particles = new Array();
         particleGroup = new THREE.Group();
@@ -89,6 +76,9 @@ function initLogo()
 			}
 		}
 
+        scene.add( plusxLogo );
+        scene.add( directionalLight );
+        scene.add( ambientLight );
         scene.add( particleGroup );
 
         renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
@@ -109,7 +99,6 @@ function initLogo()
         document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
         window.addEventListener( 'resize', onWindowResize, false );
 
         $.PX.ThreeRenderer = renderer;

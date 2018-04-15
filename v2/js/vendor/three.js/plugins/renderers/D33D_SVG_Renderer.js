@@ -2,7 +2,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-THREE.D33D_SVG = function ( exports )
+THREE.D33D_SVG = function()
 {
     var DEGS_TO_RADS = Math.PI / 180, UNIT_SIZE = 100,
         DIGIT_0 = 48,
@@ -14,7 +14,7 @@ THREE.D33D_SVG = function ( exports )
 
     /// Part from g0v/twgeojson
     /// Graphic Engine and Geo Data Init Functions
-    exports.addGeoObject = function ( group, svgObject )
+    this.addGeoObject = function ( group, svgObject )
     {
         var paths = svgObject.paths,
             amounts = svgObject.amounts,
@@ -23,7 +23,7 @@ THREE.D33D_SVG = function ( exports )
 
         for ( var i = 0; i < paths.length; i ++ )
         {
-            var path = transformSVGPath( paths[ i ] ),
+            var path = this.transformSVGPath( paths[ i ] ),
                 color = new THREE.Color( colors[ i ] ),
                 material = new THREE.MeshLambertMaterial( {
                     color: color,
@@ -53,7 +53,7 @@ THREE.D33D_SVG = function ( exports )
         return group;
     };
 
-    function transformSVGPath( pathStr )
+    this.transformSVGPath = function( pathStr )
     {
         var path = new THREE.ShapePath(),
             idx = 1, len = pathStr.length, activeCmd,
@@ -272,5 +272,5 @@ THREE.D33D_SVG = function ( exports )
         return path;
     };
 
-    exports.transformSVGPath = transformSVGPath;
+    return this;
 }
