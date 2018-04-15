@@ -1,4 +1,4 @@
-function initLogo()
+function initWebGLScene()
 {
     // Shows a warning error message if no webgl support detected
     if ( !Detector.webgl ) Detector.addGetWebGLMessage();
