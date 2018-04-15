@@ -43,8 +43,8 @@ function initLogo()
         // Settings for the particle wave
         particleData = {
             SEPARATION: 100,
-            AMOUNTX: 50,
-            AMOUNTY: 50
+            AMOUNTX: 90,
+            AMOUNTY: 40
         };
 
         // Create the main scene
