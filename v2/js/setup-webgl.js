@@ -3,9 +3,9 @@ function initWebGLScene()
     // Shows a warning error message if no webgl support detected
     if ( !Detector.webgl ) Detector.addGetWebGLMessage();
 
-    // +x Logo exported from Adobe Illustrator source artwork
     var plusxLogo_SVGPaths =
         {
+            // +x Logo exported from Adobe Illustrator source artwork
             paths: [
                 "M77.9,0h27.2l13,20.8L131.4,0h26.7l-26,37.6l27,38.8h-27.3l-14.7-20.8l-14.4,20.8H76.6l26.3-38.7L77.9,0z",
                 "M25.8,49.8v26.6h22.5V49.7H74V26.7H48.2V0H25.8v26.6H0v23.1L25.8,49.8z"
@@ -15,14 +15,20 @@ function initWebGLScene()
             center:  { x: 80, y: 30 }
         },
 
+        // Settings for the particle wave
+        particleData = {
+            SEPARATION: 100,
+            AMOUNTX: 90,
+            AMOUNTY: 40
+        },
+
         // DOM elements
         container = $( '#container' ),
 
         // Scene elements
         scene, camera, renderer, controls,
-        ambientLight, directionalLight,
-        plusxLogo, particleGroup, particles = [], particle,
-        particleData, particleSpeed = 0,
+        ambientLight, directionalLight, plusxLogo,
+        particleGroup, particles = [], particle, particleSpeed = 0,
 
         // This is an SVG renderer from D3-3D, used inline in this example:
         // https://threejs.org/examples/?q=geometry#webgl_geometry_extrude_shapes2
@@ -35,6 +41,7 @@ function initWebGLScene()
         PI2 = Math.PI * 2,
         mouseX = 0, mouseY = 0;
 
+    // Just slaps on functions onto the empty d33d_SVG object literal
     THREE.D33D_SVG( d33d_SVG );
 
     init();
@@ -42,13 +49,6 @@ function initWebGLScene()
 
     function init()
     {
-        // Settings for the particle wave
-        particleData = {
-            SEPARATION: 100,
-            AMOUNTX: 90,
-            AMOUNTY: 40
-        };
-
         // Create the main scene
         scene = new THREE.Scene();
 
@@ -118,9 +118,6 @@ function initWebGLScene()
         controls.enabled = false;
 
         // Set up event listeners
-        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
         window.addEventListener( 'resize', onWindowResize, false );
 
         // Set global references for access in other scripts
@@ -138,32 +135,6 @@ function initWebGLScene()
         camera.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight );
     }
-
-    function onDocumentMouseMove( event )
-    {
-		mouseX = event.clientX - windowHalfX;
-		mouseY = event.clientY - windowHalfY;
-	}
-
-    function onDocumentTouchStart( event )
-    {
-		if ( event.touches.length === 1 )
-        {
-			event.preventDefault();
-			mouseX = event.touches[ 0 ].pageX - windowHalfX;
-			mouseY = event.touches[ 0 ].pageY - windowHalfY;
-		}
-	}
-
-    function onDocumentTouchMove( event )
-    {
-		if ( event.touches.length === 1 )
-        {
-			event.preventDefault();
-			mouseX = event.touches[ 0 ].pageX - windowHalfX;
-			mouseY = event.touches[ 0 ].pageY - windowHalfY;
-		}
-	}
 
     function animate()
     {
