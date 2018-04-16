@@ -6,7 +6,7 @@ function initScrollMagic()
         {
             triggerElement: 'body',
             triggerHook: 'onLeave',
-            duration: '100%'
+            duration: '100'
         })
         .setPin( 'body' )
         .addTo( controller ),
