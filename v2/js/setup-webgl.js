@@ -18,8 +18,8 @@ function initWebGLScene()
         // Settings for the particle wave
         particleData = {
             SEPARATION: 100,
-            AMOUNTX: 90,
-            AMOUNTY: 40
+            AMOUNTX: 150,
+            AMOUNTY: 50
         },
 
         // DOM elements
@@ -66,7 +66,7 @@ function initWebGLScene()
         particleGroup.scale.set( 0.1, 0.1, 1 );
 
         // Create sphere and material for the particles
-        var geometry = new THREE.SphereGeometry( 1, 20, 20 ),
+        var geometry = new THREE.SphereGeometry( 1, 6, 6 ),
             material = new THREE.MeshLambertMaterial( {color: 0xffffff} ),
             i = 0;
 
