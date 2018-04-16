@@ -23,7 +23,51 @@ myGrid.rotation.x = Math.PI / 2;
 myGroup.add( helper );
 
 scene.background = reflectionCube;
+
+function createPointsCube()
+{
+    var particles = 50000,
+        geometry = new THREE.BufferGeometry(),
+        material, points,
+        positions = [],
+        colors = [],
+        color = new THREE.Color(),
+        n = 1000, n2 = n / 2, // particles spread in the cube
+        x, y, z, vx, vy, vz;
+
+    for ( var i = 0; i < particles; i ++ )
+    {
+        // positions
+        x = Math.random() * n - n2;
+        y = Math.random() * n - n2;
+        z = Math.random() * n - n2;
+
+        positions.push( x, y, z );
+
+        // colors
+        vx = ( x / n ) + 0.5;
+        vy = ( y / n ) + 0.5;
+        vz = ( z / n ) + 0.5;
+
+        color.setRGB( vx, vy, vz );
+        colors.push( color.r, color.g, color.b );
+    }
+
+    geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ));
+    geometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ));
+    geometry.computeBoundingSphere();
+
+    material = new THREE.PointsMaterial({ size: 15, vertexColors: THREE.VertexColors });
+    points = new THREE.Points( geometry, material );
+
+    return points;
+}
+
+
+// Add everything to the scene
 scene.add( particleLight );
+scene.add( createPointsCube() );
+
 
 // Set up event listeners
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
