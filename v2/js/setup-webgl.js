@@ -57,7 +57,7 @@ function initWebGLScene()
 
         particleWave = function()
         {
-            var particleGroup = new THREE.Group(),
+            var self = this,
                 particles = [], particle, particleSpeed = 0,
 
                 // Settings for the particle wave
@@ -71,26 +71,31 @@ function initWebGLScene()
                 material = new THREE.MeshLambertMaterial( {color: 0xffffff} ),
                 i = 0;
 
+            this.particleGroup = new THREE.Group();
+
             init = function()
             {
-                particleGroup.position.set( 0, -100, 0 );
-                particleGroup.scale.set( 0.1, 0.1, 1 );
-
                 // Create all the particles and insert each into the particleGroup
                 for ( var ix = 0; ix < particleData.AMOUNTX; ix++ )
                 {
         			for ( var iy = 0; iy < particleData.AMOUNTY; iy++ )
                     {
-        				particle = particles[ i++ ] = new THREE.Mesh( geometry, material );
-        				particle.position.x = ix * particleData.SEPARATION - (( particleData.AMOUNTX * particleData.SEPARATION ) / 2 );
-        				particle.position.z = iy * particleData.SEPARATION - (( particleData.AMOUNTY * particleData.SEPARATION ) / 2 );
+                        // positions
+                        x = ix * particleData.SEPARATION - (( particleData.AMOUNTX * particleData.SEPARATION ) / 2 );
+                        y = 1
+                        z = iy * particleData.SEPARATION - (( particleData.AMOUNTY * particleData.SEPARATION ) / 2 );
 
-                        particleGroup.add( particle );
+                        particle = particles[ i++ ] = new THREE.Mesh( geometry, material );
+        				particle.position.x = x;
+        				particle.position.z = z;
+
+                        self.particleGroup.add( particle );
         			}
         		}
-            }
 
-            this.particleGroup = particleGroup;
+                self.particleGroup.position.set( 0, -100, 0 );
+                self.particleGroup.scale.set( 0.1, 0.1, 1 );
+            }
 
             this.animate = function()
             {
@@ -101,11 +106,15 @@ function initWebGLScene()
                 {
         			for ( var iy = 0; iy < particleData.AMOUNTY; iy ++ )
                     {
-        				particle = particles[ i++ ];
-        				particle.position.y = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) * 50 ) +
+                        // animate the y position + scale
+                        y = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) * 50 ) +
         					( Math.sin( ( iy + particleSpeed ) * 0.5 ) * 50 );
-        				particle.scale.x = particle.scale.y = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) + 1 ) * 4 +
-        					( Math.sin( ( iy + particleSpeed ) * 0.5 ) + 1 ) * 4;
+                        scale = ( Math.sin( ( ix + particleSpeed ) * 0.3 ) + 1 ) * 4 +
+        					    ( Math.sin( ( iy + particleSpeed ) * 0.5 ) + 1 ) * 4;
+
+        				particle = particles[ i++ ];
+        				particle.position.y = y;
+        				particle.scale.x = particle.scale.y = scale;
         			}
         		}
 
