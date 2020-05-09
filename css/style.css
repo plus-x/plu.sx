@@ -25,6 +25,10 @@
 		-webkit-text-stroke: 0.15px;
 	}
 
+	.fontoverride {
+		font-family: 'Source Sans Pro', sans-serif;
+	}
+
 	h1,h2,h3,h4,h5,h6
 	{
 		font-weight: bold;
