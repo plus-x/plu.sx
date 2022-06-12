@@ -357,6 +357,16 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 300px;
 }
 
+.logo-inline {
+  width: 60px;
+  padding-bottom: 5px;
+}
+
+.logo-inline-tiny {
+  width: 20px;
+  padding-bottom: 2px;
+}
+
 #hero h1 {
   margin: 0 0 30px 0;
   font-size: 48px;
@@ -418,7 +428,7 @@ section {
 }
 
 .section-bg {
-  background-color: whitesmoke;
+  background-color: whitesmoke !important;
 }
 
 .section-title {
