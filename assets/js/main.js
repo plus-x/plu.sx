@@ -121,7 +121,7 @@
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
-  })
+  });
 
   /**
    * Mobile nav dropdowns activate
@@ -131,7 +131,7 @@
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
     }
-  }, true)
+  }, true);
 
   /**
    * Scrool with ofset on links with a class name .scrollto
@@ -149,8 +149,8 @@
       }
       scrollto(this.hash)
     }
-  }, true)
-
+  }, true);
+  
   /**
    * Scroll with ofset on page load with hash links in the url
    */
@@ -246,5 +246,36 @@
       mirror: false
     })
   });
+  
+  /**
+   * Mouseover effect on header
+   */
+  $( '#header' ).mouseover( function( e )
+  {
+    var header = $( e.currentTarget ),
+        tagline = header.find( 'span.tagline' ),
+        tagline1 = $( tagline[0] ),
+        tagline2 = $( tagline[1] );
+    
+    tagline1.removeClass( 'pxgrey-dark' );
+    tagline1.addClass( 'pxgreen' );
+    
+    tagline2.removeClass( 'pxgrey-dark' );
+    tagline2.addClass( 'pxblue-brighter' );
+  });
+  
+  $( '#header' ).mouseout( function( e )
+  {
+    var header = $( e.currentTarget ),
+        tagline = header.find( 'span.tagline' ),
+        tagline1 = $( tagline[0] ),
+        tagline2 = $( tagline[1] );
+    
+    tagline1.removeClass( 'pxgreen' );
+    tagline1.addClass( 'pxgrey-dark' );
+    
+    tagline2.removeClass( 'pxblue-brighter' );
+    tagline2.addClass( 'pxgrey-dark' );
+  });
 
-})()
+})();

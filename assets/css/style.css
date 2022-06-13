@@ -101,6 +101,15 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 40px;
 }
 
+#header .logo-wrap span {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+span.logo {
+  padding-right: 15px;
+}
+
 @media (max-width: 992px) {
   #header {
     height: 70px;
@@ -384,15 +393,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pxgreen {
-  color: #00cd2a;
+  color: #00cd2a !important;
+  transition: 0.3s;
 }
 
 .pxblue {
-  color: #006ac0;
+  color: #006ac0 !important;
+  transition: 0.6s;
+}
+
+.pxgrey-dark {
+  color: #555;
+  transition: 0.9s;
 }
 
 .pxblue-brighter {
   color: #1ea0fb;
+  transition: 1.2s;
+}
+
+.logo-wrap {
+  margin-top: 15px;
+  width: 100%;
 }
 
 .tagline-wrap {
@@ -403,7 +425,7 @@ h1, h2, h3, h4, h5, h6 {
 .tagline {
   display: inline-block;
   margin: 0px;
-  font-weigt: bold;
+  font-weight: bold;
   font-size: 18px;
 }
 
