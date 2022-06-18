@@ -242,12 +242,16 @@ span.logo {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #151515;
+  color: #1ea0fb;
   font-size: 28px;
   cursor: pointer;
   display: none;
   line-height: 0;
   transition: 0.5s;
+}
+
+.mobile-nav-toggle:hover {
+  color: #00cd2a;
 }
 
 .mobile-nav-toggle.bi-x {
