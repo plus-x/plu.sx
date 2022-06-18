@@ -111,9 +111,8 @@ span.logo {
 }
 
 @media screen and (min-width: 100px) and (max-width: 600px) {
-  
   #header .logo-wrap span {
-    font-size: 14px;
+    font-size: 22px;
   }
 }
 
