@@ -110,10 +110,10 @@ span.logo {
   padding-right: 15px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 100px) and (max-width: 600px) {
+  
   #header .logo-wrap span {
-    font-size: 12px !important;
-    border: 1px solid yellow;
+    font-size: 14px;
   }
 }
 
