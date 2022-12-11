@@ -439,7 +439,7 @@ span.logo {
   font-size: 18px;
 }
 
-.btn-get-started {
+.btn {
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   font-weight: 800;
@@ -453,9 +453,23 @@ span.logo {
   background: #00cd2a;
 }
 
+.btn-get-started {
+  background: #00cd2a;
+}
+
+.btn-pdf {
+  background: #db1010;
+}
+
 .btn-get-started:hover {
   transition: 0.5s;
   background: #1ea0fb;
+  color: white !important;
+}
+
+.btn-pdf:hover {
+  transition: 0.5s;
+  background: #b30e0e;
   color: white !important;
 }
 
