@@ -1,5 +1,5 @@
 /* Default styles for all screen sizes */
-.body {
+body {
   background-color: #eee;
 }
 
@@ -18,7 +18,7 @@
   margin: 10px;
   padding: 20px;
   text-align: center;
-  width: 30%;
+  width: 20%;
 }
 
 /* Media query for mobile screens */
