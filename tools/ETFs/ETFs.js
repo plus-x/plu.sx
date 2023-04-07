@@ -1,7 +1,7 @@
 function filterJsonObjects(jsonObject, feed) {
   const substrings = ["5L", "5S", "3L", "3S"];
 
-  const filteredObjects = jsonObject.filter(obj => {
+  var filteredObjects = jsonObject.filter(obj => {
 	var currency;
 	if( feed == 1 ) currency = obj.currency;
 	if( feed == 2 ) currency = obj.symbol;
