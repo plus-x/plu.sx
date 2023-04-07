@@ -9,6 +9,7 @@ function filterJsonObjects(jsonObject, feed) {
 	  filteredObjects = filteredObjects.data.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	} else if (feed === 3) {
 	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
+	  console.dir(filteredObjects);
 	}
 
   return filteredObjects;
