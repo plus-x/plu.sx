@@ -6,7 +6,7 @@ function filterJsonObjects(jsonObject, feed) {
 	if (feed === 1) {
 	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.currency.includes(substring)));
 	} else if (feed === 2) {
-	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
+	  filteredObjects = filteredObjects.data.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	} else if (feed === 3) {
 	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	}
