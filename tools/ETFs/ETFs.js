@@ -45,6 +45,7 @@ function filterJsonObjects(jsonObject, feed) {
 			if (!response.ok) {
 			  throw new Error(`HTTP error! Status: ${response.status}. Response data: ${response.text()}`);
 			}
+			console.log(response);
 			return response.json();
 		  })
 		  .then(jsonObject => {
