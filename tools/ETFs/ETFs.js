@@ -10,7 +10,7 @@ function filterJsonObjects(jsonObject) {
 }
 
 // Fetching the JSON data from the API endpoint
-fetch("https://api.gateio.ws/api/v4/spot/currencies")
+fetch("ETFs.php")
   .then(response => response.json())
   .then(jsonObject => {
 	const filteredJsonObject = filterJsonObjects(jsonObject);
