@@ -1,4 +1,7 @@
 /* Default styles for all screen sizes */
+.body {
+  background-color: #eee;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +17,7 @@
   margin: 10px;
   padding: 20px;
   text-align: center;
-  width: calc(33.33% - 20px);
+  width: 30%;
 }
 
 /* Media query for mobile screens */
