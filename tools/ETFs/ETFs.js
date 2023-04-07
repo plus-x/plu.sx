@@ -12,7 +12,7 @@ function filterJsonObjects(jsonObject, feed) {
   return filteredObjects;
 }
 
-function()
+(function()
 {
 	var filteredJsonObject,
 		flattenedCurrencyArray,
@@ -73,4 +73,4 @@ function()
 		  box.innerHTML = currencyList;
 		})
 		.catch(error => console.error(error));
-}();
+})();
