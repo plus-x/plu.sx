@@ -10,7 +10,7 @@ function filterJsonObjects(jsonObject) {
 }
 
 // Fetching the JSON data from the API endpoint
-fetch("proxy.php")
+fetch("ETFs.php")
   .then(response => {
 	if (!response.ok) {
 	  return response.text().then(text => {
