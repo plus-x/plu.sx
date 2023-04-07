@@ -1,6 +1,19 @@
 <?php
 
-$url = "https://api.gateio.ws/api/v4/spot/currencies";
+$feedNumber = isset($_GET['feed']) ? $_GET['feed'] : 1;
+$url = "";
+
+if ($feedNumber == 1) {
+  $url = "https://api.gateio.ws/api/v4/spot/currencies";
+} else if ($feedNumber == 2) {
+  $url = "https://api.kucoin.com/api/v2/symbols";
+} else if ($feedNumber == 3) {
+  $url = "https://api.mexc.com/api/v3/etf/info";
+} 
+else {
+  echo "Invalid feed number.";
+  exit();
+}
 
 // Set up cURL
 $curl = curl_init();
