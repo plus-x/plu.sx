@@ -20,23 +20,23 @@ function filterJsonObjects(jsonObject, feed) {
 		box;
 		
 	// Fetching the JSON data from the API endpoint
-	fetch("ETFs.php?feed=1")
-	  .then(response => {
-		if (!response.ok) {
-		  return response.text().then(text => {
-			throw new Error(`HTTP error! Status: ${response.status}. Response data: ${text}`);
-		  });
-		}
-		return response.json();
-	  })
-	  .then(jsonObject => {
-		filteredJsonObject = filterJsonObjects(jsonObject, 1);
-		flattenedCurrencyArray = filteredJsonObject.map(obj => obj.currency).flat();
-		currencyList = flattenedCurrencyArray.join("<br>");
-		box = document.querySelector("#GateIO");
-		box.innerHTML = currencyList;
-	  })
-	  .catch(error => console.error(error));
+	// fetch("ETFs.php?feed=1")
+	//   .then(response => {
+	// 	if (!response.ok) {
+	// 	  return response.text().then(text => {
+	// 		throw new Error(`HTTP error! Status: ${response.status}. Response data: ${text}`);
+	// 	  });
+	// 	}
+	// 	return response.json();
+	//   })
+	//   .then(jsonObject => {
+	// 	filteredJsonObject = filterJsonObjects(jsonObject, 1);
+	// 	flattenedCurrencyArray = filteredJsonObject.map(obj => obj.currency).flat();
+	// 	currencyList = flattenedCurrencyArray.join("<br>");
+	// 	box = document.querySelector("#GateIO");
+	// 	box.innerHTML = currencyList;
+	//   })
+	//   .catch(error => console.error(error));
 	
 	fetch("ETFs.php?feed=2")
 	  .then(response => {
