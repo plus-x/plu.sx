@@ -12,7 +12,15 @@ body {
   padding: 20px;
 }
 
+.title {
+  font-weight: bold;
+}
+
 .box {
+  width: 100%;
+}
+
+.box-outer {
   background-color: #fff;
   border: 1px solid #ccc;
   margin: 10px;
