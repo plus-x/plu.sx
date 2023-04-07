@@ -23,7 +23,7 @@ fetch("ETFs.php")
 	const filteredJsonObject = filterJsonObjects(jsonObject);
 	const flattenedCurrencyArray = filteredJsonObject.map(obj => obj.currency).flat();
 	const currencyList = flattenedCurrencyArray.join("<br>");
-	const boxDiv = document.querySelector("#box");
+	const boxDiv = document.querySelector("#box1");
 	boxDiv.innerHTML = currencyList;
   })
   .catch(error => console.error(error));
