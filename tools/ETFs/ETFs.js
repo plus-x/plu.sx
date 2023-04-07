@@ -11,12 +11,17 @@ function filterJsonObjects(jsonObject) {
 
 // Fetching the JSON data from the API endpoint
 fetch("proxy.php")
-  .then(response => response.json())
+  .then(response => {
+	if (!response.ok) {
+	  throw new Error(`HTTP error! Status: ${response.status}. Response data: ${response.text()}`);
+	}
+	return response.json();
+  })
   .then(jsonObject => {
 	const filteredJsonObject = filterJsonObjects(jsonObject);
 	const flattenedCurrencyArray = filteredJsonObject.map(obj => obj.currency).flat();
 	const currencyList = flattenedCurrencyArray.join("<br>");
-	const boxDiv = document.querySelector("#box1");
+	const boxDiv = document.querySelector("#box");
 	boxDiv.innerHTML = currencyList;
   })
   .catch(error => console.error(error));
