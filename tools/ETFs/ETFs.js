@@ -13,7 +13,9 @@ function filterJsonObjects(jsonObject) {
 fetch("proxy.php")
   .then(response => {
 	if (!response.ok) {
-	  throw new Error(`HTTP error! Status: ${response.status}. Response data: ${response.text()}`);
+	  return response.text().then(text => {
+		throw new Error(`HTTP error! Status: ${response.status}. Response data: ${text}`);
+	  });
 	}
 	return response.json();
   })
