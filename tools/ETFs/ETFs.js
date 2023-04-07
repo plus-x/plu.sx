@@ -9,7 +9,6 @@ function filterJsonObjects(jsonObject, feed) {
 	  filteredObjects = filteredObjects.data.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	} else if (feed === 3) {
 	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
-	  console.dir(filteredObjects);
 	}
 
   return filteredObjects;
@@ -68,7 +67,7 @@ function filterJsonObjects(jsonObject, feed) {
 		  })
 		  .then(jsonObject => {
 			const filteredJsonObject = filterJsonObjects(jsonObject, 3);
-			const flattenedCurrencyArray = filteredJsonObject.map(obj => obj.name).flat();
+			const flattenedCurrencyArray = filteredJsonObject.map(obj => obj.symbol).flat();
 			const currencyList = flattenedCurrencyArray.join("<br>");
 			const box = document.querySelector("#MEXC");
 			box.innerHTML = currencyList;
