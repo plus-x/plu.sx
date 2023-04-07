@@ -1,5 +1,5 @@
 function filterJsonObjects(jsonObject, feed) {
-  const substrings = ["5L", "5S", "3L", "3S"];
+  const substrings = ["5L", "5S", "4L", "4S", "3L", "3S", "2L", "2S"];
 
   var filteredObjects = jsonObject;
   
@@ -45,7 +45,6 @@ function filterJsonObjects(jsonObject, feed) {
 			if (!response.ok) {
 			  throw new Error(`HTTP error! Status: ${response.status}. Response data: ${response.text()}`);
 			}
-			console.log(response);
 			return response.json();
 		  })
 		  .then(jsonObject => {
