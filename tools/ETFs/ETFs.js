@@ -9,6 +9,8 @@ function filterJsonObjects(jsonObject, feed) {
 	  filteredObjects = filteredObjects.data.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	} else if (feed === 3) {
 	  filteredObjects = filteredObjects.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
+	} else if (feed === 4) {
+	  filteredObjects = filteredObjects.data.filter(obj => substrings.some(substring => obj.symbol.includes(substring)));
 	}
 
   return filteredObjects;
@@ -74,5 +76,23 @@ function filterJsonObjects(jsonObject, feed) {
 		  })
 		  .catch(error => console.error(error));
 	  })();
+	  
+	  (function() {
+		  fetch("ETFs.php?feed=4")
+			.then(response => {
+			  if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}. Response data: ${response.text()}`);
+			  }
+			  return response.json();
+			})
+			.then(jsonObject => {
+			  const filteredJsonObject = filterJsonObjects(jsonObject, 4);
+			  const flattenedCurrencyArray = filteredJsonObject.map(obj => obj.symbol).flat();
+			  const currencyList = flattenedCurrencyArray.join("<br>");
+			  const box = document.querySelector("#AscendEx");
+			  box.innerHTML = currencyList;
+			})
+			.catch(error => console.error(error));
+		})();
 	})();
 })();

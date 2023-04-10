@@ -9,7 +9,9 @@ if ($feedNumber == 1) {
   $url = "https://api.kucoin.com/api/v2/symbols";
 } else if ($feedNumber == 3) {
   $url = "https://api.mexc.com/api/v3/etf/info";
-} 
+} else if ($feedNumber == 4) {
+  $url = "https://ascendex.com/api/pro/v1/cash/products";
+}
 else {
   echo "Invalid feed number.";
   exit();
