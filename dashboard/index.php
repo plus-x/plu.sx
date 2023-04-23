@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once 'vendor/autoload.php';
 
 use ccxt\Exchange;
@@ -40,11 +43,15 @@ function get_total_balance(Exchange $exchange) {
 
 function main($apiKeys) {
 	foreach ($apiKeys as $exchangeId => $credentials) {
-		echo "Logging in to $exchangeId\n";
-		$exchange = create_exchange($exchangeId, $credentials['apiKey'], $credentials['secret'], $credentials['password'] ?? null);
-		$total_balance = get_total_balance($exchange);
-		echo "Total balance on $exchangeId: $total_balance\n";
-		echo "---------------------------------\n";
+		try {
+			$exchange = new $exchangeClass(array_merge($credentials, $settings));
+			echo "Logging into $exchangeId...\n";
+			$balance = $exchange->fetch_balance();
+			echo "Fetched balance from $exchangeId...\n";
+			print_r($balance);
+		} catch (Exception $e) {
+			echo "Error while fetching balance from $exchangeId: " . $e->getMessage() . "\n";
+		}
 	}
 }
 
