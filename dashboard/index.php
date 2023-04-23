@@ -43,7 +43,7 @@ function get_total_balance(Exchange $exchange) {
 
 function main($apiKeys) {
 	foreach ($apiKeys as $exchangeId => $credentials) {
-		$exchangeClass = "\\ccxt\\" . str_replace('_', '', ucwords($exchangeId, '_'));
+		$exchangeClass = "\\ccxt\\" . $exchangeId;
 		
 		try {
 			$exchange = new $exchangeClass(array_merge($credentials, $settings));
