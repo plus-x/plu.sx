@@ -43,6 +43,8 @@ function get_total_balance(Exchange $exchange) {
 
 function main($apiKeys) {
 	foreach ($apiKeys as $exchangeId => $credentials) {
+		$exchangeClass = "\\ccxt\\" . ucfirst($exchangeId);
+		
 		try {
 			$exchange = new $exchangeClass(array_merge($credentials, $settings));
 			echo "Logging into $exchangeId...\n";
