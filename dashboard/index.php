@@ -5,14 +5,10 @@ use ccxt\Exchange;
 
 $apiKeys = [
 	'binance' => [
-		'apiKey' => 'YOUR_BINANCE_API_KEY',
-		'secret' => 'YOUR_BINANCE_SECRET_KEY',
-	],
-	'coinbasepro' => [
-		'apiKey' => 'YOUR_COINBASEPRO_API_KEY',
-		'secret' => 'YOUR_COINBASEPRO_SECRET_KEY',
-		'password' => 'YOUR_COINBASEPRO_API_PASSWORD',
-	],
+		'apiKey' => 'fmiX4M1slroIMd7cxlUabfz5zFsl0UiHpyfgDg8iS9VqaFBfgdWffQmVxD9FpmDv',
+		'secret' => 'DTjf6G5FCLwVH59Ke4M85zX9o6eXgyvtqhbdIyAXFdrV3BhxGD6EDgf04WpENtib',
+	]
+	
 	// Add more exchanges and their respective API keys here.
 ];
 
