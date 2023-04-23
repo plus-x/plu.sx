@@ -42,6 +42,8 @@ function get_total_balance(Exchange $exchange) {
 }
 
 function main($apiKeys) {
+	$settings = [];
+	
 	foreach ($apiKeys as $exchangeId => $credentials) {
 		$exchangeClass = "\\ccxt\\" . $exchangeId;
 		
