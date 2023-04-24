@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="balancesApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exchange Balances</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body ng-controller="balancesController">
+	<h1>Exchange Balances</h1>
+	<div ng-repeat="(exchange, balances) in data">
+		<h2>{{exchange}}</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Currency</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="(currency, amount) in balances">
+					<td>{{currency}}</td>
+					<td>{{amount}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		var app = angular.module('balancesApp', []);
+
+		app.controller('balancesController', function($scope, $http) {
+			$http.get('ccxt.php')
+			.then(function(response) {
+				$scope.data = response.data;
+			}, function(error) {
+				console.error('Error fetching data:', error);
+			});
+		});
+		</script>
+	</body>
+	</html>
