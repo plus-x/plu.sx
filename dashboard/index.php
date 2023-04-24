@@ -31,10 +31,10 @@ function get_total_account_balance($exchange) {
 	$total = 0;
 
 	foreach ($balance['total'] as $currency => $amount) {
-		//if ($amount > 0) {
+		if ($amount > 0) {
 			echo "Currency: $currency, Amount: $amount\n";
 			$total += $exchange->price_to_precision($currency, $amount);
-		//}
+		}
 	}
 
 	return $total;
