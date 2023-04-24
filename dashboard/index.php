@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -15,47 +16,38 @@ $apiKeys = [
 	// Add more exchanges and their respective API keys here.
 ];
 
-function create_exchange($exchangeId, $apiKey, $apiSecret, $apiPassword = null) {
+function login($exchangeId, $apiKey, $secret) {
 	$exchangeClass = "\\ccxt\\$exchangeId";
 	$exchange = new $exchangeClass(array(
 		'apiKey' => $apiKey,
-		'secret' => $apiSecret,
-		'password' => $apiPassword, // For exchanges that require a password, like Coinbase Pro
-		'enableRateLimit' => true,
+		'secret' => $secret,
 	));
 
 	return $exchange;
 }
 
-function get_total_balance(Exchange $exchange) {
+function get_total_account_balance($exchange) {
 	$balance = $exchange->fetch_balance();
-	$total_balance = 0;
+	$total = 0;
 
 	foreach ($balance['total'] as $currency => $amount) {
 		if ($amount > 0) {
 			echo "Currency: $currency, Amount: $amount\n";
-			$total_balance += $amount;
+			$total += $exchange->price_to_precision($currency, $amount);
 		}
 	}
 
-	return $total_balance;
+	return $total;
 }
 
-function main($apiKeys) {
-	$settings = [];
-	
-	foreach ($apiKeys as $exchangeId => $credentials) {
-		$exchangeClass = "\\ccxt\\" . $exchangeId;
-		
-		try {
-			$exchange = new $exchangeClass(array_merge($credentials, $settings));
-			echo "Logging into $exchangeId...\n";
-			$balance = $exchange->fetch_balance();
-			echo "Fetched balance from $exchangeId...\n";
-			print_r($balance);
-		} catch (Exception $e) {
-			echo "Error while fetching balance from $exchangeId: " . $e->getMessage() . "\n";
-		}
+foreach ($apiKeys as $exchangeId => $credentials) {
+	try {
+		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret']);
+		echo "Logged into $exchangeId\n";
+		$total_balance = get_total_account_balance($exchange);
+		echo "Total Account Balance for $exchangeId: $total_balance\n\n";
+	} catch (Exception $e) {
+		echo "Error logging into $exchangeId: " . $e->getMessage() . "\n\n";
 	}
 }
 
