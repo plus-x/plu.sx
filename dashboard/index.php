@@ -50,5 +50,3 @@ foreach ($apiKeys as $exchangeId => $credentials) {
 		echo "Error logging into $exchangeId: " . $e->getMessage() . "\n\n";
 	}
 }
-
-main($apiKeys);
