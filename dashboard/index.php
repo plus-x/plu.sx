@@ -32,7 +32,6 @@ function get_total_account_balance($exchange) {
 
 	foreach ($balance['total'] as $currency => $amount) {
 		if ($amount > 0) {
-			echo "Currency: $currency, Amount: $amount\n";
 			$balances[$currency] = $amount;
 		}
 	}
@@ -40,19 +39,19 @@ function get_total_account_balance($exchange) {
 	return $balances;
 }
 
+$output = [];
+
 foreach ($apiKeys as $exchangeId => $credentials) {
 	try {
 		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret']);
-		echo "Logged into $exchangeId\n";
 		$total_balances = get_total_account_balance($exchange);
-		echo "Total Account Balances for $exchangeId:\n";
-		foreach ($total_balances as $currency => $amount) {
-			echo "  $currency: $amount\n";
-		}
-		echo "\n";
+		$output[$exchangeId] = $total_balances;
 	} catch (Exception $e) {
-		echo "Error logging into $exchangeId: " . $e->getMessage() . "\n\n";
+		$output[$exchangeId] = ["error" => $e->getMessage()];
 	}
 }
+
+$json_output = json_encode($output, JSON_PRETTY_PRINT);
+echo $json_output;
 
 ?>
