@@ -28,25 +28,31 @@ function login($exchangeId, $apiKey, $secret) {
 
 function get_total_account_balance($exchange) {
 	$balance = $exchange->fetch_balance();
-	$total = 0;
+	$balances = [];
 
 	foreach ($balance['total'] as $currency => $amount) {
 		if ($amount > 0) {
 			echo "Currency: $currency, Amount: $amount\n";
-			$total += $exchange->price_to_precision($currency, $amount);
+			$balances[$currency] = $amount;
 		}
 	}
 
-	return $total;
+	return $balances;
 }
 
 foreach ($apiKeys as $exchangeId => $credentials) {
 	try {
 		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret']);
 		echo "Logged into $exchangeId\n";
-		$total_balance = get_total_account_balance($exchange);
-		echo "Total Account Balance for $exchangeId: $total_balance\n\n";
+		$total_balances = get_total_account_balance($exchange);
+		echo "Total Account Balances for $exchangeId:\n";
+		foreach ($total_balances as $currency => $amount) {
+			echo "  $currency: $amount\n";
+		}
+		echo "\n";
 	} catch (Exception $e) {
 		echo "Error logging into $exchangeId: " . $e->getMessage() . "\n\n";
 	}
 }
+
+?>
