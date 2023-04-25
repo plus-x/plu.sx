@@ -60,6 +60,19 @@ function get_total_account_balance($exchange) {
 	}
 }
 
+function get_total_account_balance_bybit_spot($exchange) {
+	$balance = $exchange->fetch_balance(array('type' => 'spot')); // Add 'type' => 'spot' parameter
+	$balances = [];
+
+	foreach ($balance['total'] as $currency => $amount) {
+		if ($amount > 0) {
+			$balances[$currency] = $amount;
+		}
+	}
+
+	return $balances;
+}
+
 $output = [];
 
 foreach ($apiKeys as $exchangeId => $credentials) {
