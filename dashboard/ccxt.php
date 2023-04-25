@@ -15,7 +15,10 @@ $apiKeys = [
 	'mexc' => [
 		'apiKey' => 'mx0vglOx0aDB39KAOt',
 		'secret' => 'eebec69041d9489e83650a424beee4db',
-	],
+	]
+	
+	/*
+	,
 	'kucoin' => [
 		'apiKey' => '644709064fb6dc0001c7220f',
 		'secret' => 'fc1603ff-4694-4525-a074-b9699cd355af',
@@ -29,6 +32,7 @@ $apiKeys = [
 		'apiKey' => 'yNAXnUZ9NuykSzE64n',
 		'secret' => '5QI9csq15ThYBJsEZ9OWkweO8NI3VWOokn6F',
 	]
+	*/
 ];
 
 function login($exchangeId, $apiKey, $secret) {
