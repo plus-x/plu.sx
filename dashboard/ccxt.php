@@ -55,17 +55,22 @@ function get_total_account_balance($exchange) {
 	return $balances;
 }
 
-function get_total_account_balance_bybit_spot($exchange) {
-	$balance = $exchange->fetch_balance(array('type' => 'spot')); // Add 'type' => 'spot' parameter
-	$balances = [];
+function get_total_account_balance($exchange) {
+	try {
+		$balance = $exchange->fetch_balance();
+		$balances = [];
 
-	foreach ($balance['total'] as $currency => $amount) {
-		if ($amount > 0) {
-			$balances[$currency] = $amount;
+		foreach ($balance['total'] as $currency => $amount) {
+			if ($amount > 0) {
+				$balances[$currency] = $amount;
+			}
 		}
-	}
 
-	return $balances;
+		return $balances;
+		
+	} catch (Exception $e) {
+		return ["error" => $e->getMessage()];
+	}
 }
 
 $output = [];
