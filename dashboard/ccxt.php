@@ -11,9 +11,24 @@ $apiKeys = [
 	'binance' => [
 		'apiKey' => 'fmiX4M1slroIMd7cxlUabfz5zFsl0UiHpyfgDg8iS9VqaFBfgdWffQmVxD9FpmDv',
 		'secret' => 'DTjf6G5FCLwVH59Ke4M85zX9o6eXgyvtqhbdIyAXFdrV3BhxGD6EDgf04WpENtib',
+	],
+	'mexc' => [
+		'apiKey' => 'mx0vglOx0aDB39KAOt',
+		'secret' => 'eebec69041d9489e83650a424beee4db',
+	],
+	'kucoin' => [
+		'apiKey' => '644709064fb6dc0001c7220f',
+		'secret' => 'fc1603ff-4694-4525-a074-b9699cd355af',
+		'password' => 'ZAv27eNuT39LZCrfQ4DMQfca!mPjQCHa', // KuCoin requires an API password as well
+	],
+	'ascendex' => [
+		'apiKey' => 'wJuIjYwu8xIBVs1XafLOh1cXkKgYsnrv',
+		'secret' => 'gUjj8xK8C4N74vzWHPUiJCVRXy23ba8vqEgkmh5C9QBDxSfdXXChvRnDvh7BHJo2',
+	],
+	'bybit' => [
+		'apiKey' => 'yNAXnUZ9NuykSzE64n',
+		'secret' => '5QI9csq15ThYBJsEZ9OWkweO8NI3VWOokn6F',
 	]
-	
-	// Add more exchanges and their respective API keys here.
 ];
 
 function login($exchangeId, $apiKey, $secret) {
