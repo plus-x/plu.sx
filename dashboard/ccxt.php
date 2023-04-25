@@ -55,12 +55,31 @@ function get_total_account_balance($exchange) {
 	return $balances;
 }
 
+function get_total_account_balance_bybit_spot($exchange) {
+	$balance = $exchange->fetch_balance(array('type' => 'spot')); // Add 'type' => 'spot' parameter
+	$balances = [];
+
+	foreach ($balance['total'] as $currency => $amount) {
+		if ($amount > 0) {
+			$balances[$currency] = $amount;
+		}
+	}
+
+	return $balances;
+}
+
 $output = [];
 
 foreach ($apiKeys as $exchangeId => $credentials) {
 	try {
 		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret'], $credentials['password'] ?? null);
-		$total_balances = get_total_account_balance($exchange);
+
+		if ($exchangeId === 'bybit') {
+			$total_balances = get_total_account_balance_bybit_spot($exchange);
+		} else {
+			$total_balances = get_total_account_balance($exchange);
+		}
+
 		$output[$exchangeId] = $total_balances;
 	} catch (Exception $e) {
 		$output[$exchangeId] = ["error" => $e->getMessage()];
