@@ -24,11 +24,11 @@ $apiKeys = [
 	'bybit' => [
 		'apiKey' => 'yNAXnUZ9NuykSzE64n',
 		'secret' => '5QI9csq15ThYBJsEZ9OWkweO8NI3VWOokn6F',
-	]/*,
+	],
 	'ascendex' => [
 		'apiKey' => 'wJuIjYwu8xIBVs1XafLOh1cXkKgYsnrv',
 		'secret' => 'gUjj8xK8C4N74vzWHPUiJCVRXy23ba8vqEgkmh5C9QBDxSfdXXChvRnDvh7BHJo2',
-	]*/
+	]
 ];
 
 function login($exchangeId, $apiKey, $secret, $password = null) {
