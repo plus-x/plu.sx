@@ -23,20 +23,25 @@
 	<h1>Exchange Balances</h1>
 	<div ng-repeat="(exchange, balances) in data track by $index">
 		<h2>{{exchange}}</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>Currency</th>
-					<th>Amount</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="(currency, amount) in balances track by $index">
-					<td>{{currency}}</td>
-					<td>{{amount}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div ng-if="!balances.error">
+			<table>
+				<thead>
+					<tr>
+						<th>Currency</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(currency, amount) in balances track by $index">
+						<td>{{currency}}</td>
+						<td>{{amount}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-if="balances.error">
+			<p>Error: {{balances.error}}</p>
+		</div>
 	</div>
 
 	<script>
