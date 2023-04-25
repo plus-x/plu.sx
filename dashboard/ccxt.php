@@ -32,11 +32,12 @@ $apiKeys = [
 	*/
 ];
 
-function login($exchangeId, $apiKey, $secret) {
+function login($exchangeId, $apiKey, $secret, $password = null) {
 	$exchangeClass = "\\ccxt\\$exchangeId";
 	$exchange = new $exchangeClass(array(
 		'apiKey' => $apiKey,
 		'secret' => $secret,
+		'password' => $password, // Add this line for exchanges that require an API password
 	));
 
 	return $exchange;
@@ -59,7 +60,7 @@ $output = [];
 
 foreach ($apiKeys as $exchangeId => $credentials) {
 	try {
-		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret']);
+		$exchange = login($exchangeId, $credentials['apiKey'], $credentials['secret'], $credentials['password'] ?? null);
 		$total_balances = get_total_account_balance($exchange);
 		$output[$exchangeId] = $total_balances;
 	} catch (Exception $e) {
