@@ -43,13 +43,13 @@
 		var app = angular.module('balancesApp', []);
 
 		app.controller('balancesController', function($scope, $http) {
-			$http.get('ccxt.php')
+			$http.get('http://your_server_domain_or_ip/ccxt.php')
 			.then(function(response) {
 				$scope.data = response.data;
 			}, function(error) {
 				console.error('Error fetching data:', error);
 			});
 		});
-		</script>
-	</body>
-	</html>
+	</script>
+</body>
+</html>
