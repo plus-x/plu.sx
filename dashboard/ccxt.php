@@ -1,7 +1,9 @@
 <?php
 
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0); // Disable displaying errors
+ini_set('log_errors', 1); // Enable logging errors
+
 
 require_once 'vendor/autoload.php';
 
@@ -90,6 +92,19 @@ foreach ($apiKeys as $exchangeId => $credentials) {
 		$output[$exchangeId] = ["error" => $e->getMessage()];
 	}
 }
+
+function custom_error_handler($errno, $errstr, $errfile, $errline) {
+	global $output;
+
+	$output['php_error'] = [
+		'error_no' => $errno,
+		'message' => $errstr,
+		'file' => $errfile,
+		'line' => $errline
+	];
+}
+
+set_error_handler("custom_error_handler");
 
 $json_output = json_encode($output, JSON_PRETTY_PRINT);
 echo $json_output;
