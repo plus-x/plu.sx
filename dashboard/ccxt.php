@@ -20,11 +20,11 @@ $apiKeys = [
 		'apiKey' => '644709064fb6dc0001c7220f',
 		'secret' => 'fc1603ff-4694-4525-a074-b9699cd355af',
 		'password' => 'ZAv27eNuT39LZCrfQ4DMQfca!mPjQCHa', // KuCoin requires an API password as well
-	]/*,
+	],
 	'ascendex' => [
 		'apiKey' => 'wJuIjYwu8xIBVs1XafLOh1cXkKgYsnrv',
 		'secret' => 'gUjj8xK8C4N74vzWHPUiJCVRXy23ba8vqEgkmh5C9QBDxSfdXXChvRnDvh7BHJo2',
-	],
+	]/*,
 	'bybit' => [
 		'apiKey' => 'yNAXnUZ9NuykSzE64n',
 		'secret' => '5QI9csq15ThYBJsEZ9OWkweO8NI3VWOokn6F',
