@@ -43,19 +43,6 @@ function login($exchangeId, $apiKey, $secret, $password = null) {
 }
 
 function get_total_account_balance($exchange) {
-	$balance = $exchange->fetch_balance();
-	$balances = [];
-
-	foreach ($balance['total'] as $currency => $amount) {
-		if ($amount > 0) {
-			$balances[$currency] = $amount;
-		}
-	}
-
-	return $balances;
-}
-
-function get_total_account_balance($exchange) {
 	try {
 		$balance = $exchange->fetch_balance();
 		$balances = [];
