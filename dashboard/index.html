@@ -21,7 +21,7 @@
 </head>
 <body ng-controller="balancesController">
 	<h1>Exchange Balances</h1>
-	<div ng-repeat="(exchange, balances) in data">
+	<div ng-repeat="(exchange, balances) in data track by $index">
 		<h2>{{exchange}}</h2>
 		<table>
 			<thead>
@@ -31,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="(currency, amount) in balances">
+				<tr ng-repeat="(currency, amount) in balances track by $index">
 					<td>{{currency}}</td>
 					<td>{{amount}}</td>
 				</tr>
