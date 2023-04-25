@@ -43,7 +43,7 @@
 		var app = angular.module('balancesApp', []);
 
 		app.controller('balancesController', function($scope, $http) {
-			$http.get('http://your_server_domain_or_ip/ccxt.php')
+			$http.get('ccxt.php')
 			.then(function(response) {
 				$scope.data = response.data;
 			}, function(error) {
