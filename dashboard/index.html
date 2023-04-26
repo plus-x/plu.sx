@@ -5,70 +5,43 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Exchange Balances</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-	<link href="theme/main.css" rel="stylesheet">
+	<style>
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
 </head>
-
 <body ng-controller="balancesController">
-	<div class="board">
-	  <nav class="nav">
-		<button arial-label="dashboard" data-active>
-		  <svg id="icon-dashboard" viewBox="0 0 24 24">
-	  <path d="M12.984 3h8.016v6h-8.016v-6zM12.984 21v-9.984h8.016v9.984h-8.016zM3 21v-6h8.016v6h-8.016zM3 12.984v-9.984h8.016v9.984h-8.016z"></path>
-	  </svg>
-		</button>
-		<button arial-label="analytics">
-		  <svg id="icon-pie_chart" viewBox="0 0 24 24">
-	  <path d="M13.031 13.031h8.953q-0.328 3.563-2.859 6.094t-6.094 2.859v-8.953zM13.031 2.016q3.563 0.328 6.094 2.859t2.859 6.094h-8.953v-8.953zM11.016 2.016v19.969q-3.797-0.375-6.398-3.234t-2.602-6.75 2.602-6.75 6.398-3.234z"></path>
-	  </svg>
-		</button>
-		<button arial-label="wallet">
-		  <svg id="icon-account_balance_wallet" viewBox="0 0 24 24">
-	  <path d="M15.984 13.5q0.609 0 1.055-0.422t0.445-1.078-0.445-1.078-1.055-0.422-1.055 0.422-0.445 1.078 0.445 1.078 1.055 0.422zM12 15.984v-7.969h9.984v7.969h-9.984zM21 18v0.984q0 0.797-0.609 1.406t-1.406 0.609h-13.969q-0.844 0-1.43-0.586t-0.586-1.43v-13.969q0-0.844 0.586-1.43t1.43-0.586h13.969q0.797 0 1.406 0.609t0.609 1.406v0.984h-9q-0.844 0-1.43 0.586t-0.586 1.43v7.969q0 0.844 0.586 1.43t1.43 0.586h9z"></path>
-	  </svg>
-		</button>
-	  </nav>
-	  <header>
-		<div class="logo">
-		  <h1>YOUR<span>COMPANY</span></h1>
+	<h1>Exchange Balances</h1>
+	<div ng-repeat="(exchange, balances) in data track by $index">
+		<h2>{{exchange}}</h2>
+		<div ng-if="!balances.error">
+			<table>
+				<thead>
+					<tr>
+						<th>Currency</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="(currency, amount) in balances track by $index">
+						<td>{{currency}}</td>
+						<td>{{currency === 'USDT' ? (amount | usdFormat) : amount}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		<div class="account">
-		  <h4>Gabrielle Union</h4>
-		  <img src="https://picsum.photos/20" alt="avatar">
-		  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
-	<path d="M16 14c0-2.203-1.797-4-4-4s-4 1.797-4 4 1.797 4 4 4 4-1.797 4-4zM24 12.297v3.469c0 0.234-0.187 0.516-0.438 0.562l-2.891 0.438c-0.172 0.5-0.359 0.969-0.609 1.422 0.531 0.766 1.094 1.453 1.672 2.156 0.094 0.109 0.156 0.25 0.156 0.391s-0.047 0.25-0.141 0.359c-0.375 0.5-2.484 2.797-3.016 2.797-0.141 0-0.281-0.063-0.406-0.141l-2.156-1.687c-0.453 0.234-0.938 0.438-1.422 0.594-0.109 0.953-0.203 1.969-0.453 2.906-0.063 0.25-0.281 0.438-0.562 0.438h-3.469c-0.281 0-0.531-0.203-0.562-0.469l-0.438-2.875c-0.484-0.156-0.953-0.344-1.406-0.578l-2.203 1.672c-0.109 0.094-0.25 0.141-0.391 0.141s-0.281-0.063-0.391-0.172c-0.828-0.75-1.922-1.719-2.578-2.625-0.078-0.109-0.109-0.234-0.109-0.359 0-0.141 0.047-0.25 0.125-0.359 0.531-0.719 1.109-1.406 1.641-2.141-0.266-0.5-0.484-1.016-0.641-1.547l-2.859-0.422c-0.266-0.047-0.453-0.297-0.453-0.562v-3.469c0-0.234 0.187-0.516 0.422-0.562l2.906-0.438c0.156-0.5 0.359-0.969 0.609-1.437-0.531-0.75-1.094-1.453-1.672-2.156-0.094-0.109-0.156-0.234-0.156-0.375s0.063-0.25 0.141-0.359c0.375-0.516 2.484-2.797 3.016-2.797 0.141 0 0.281 0.063 0.406 0.156l2.156 1.672c0.453-0.234 0.938-0.438 1.422-0.594 0.109-0.953 0.203-1.969 0.453-2.906 0.063-0.25 0.281-0.438 0.562-0.438h3.469c0.281 0 0.531 0.203 0.562 0.469l0.438 2.875c0.484 0.156 0.953 0.344 1.406 0.578l2.219-1.672c0.094-0.094 0.234-0.141 0.375-0.141s0.281 0.063 0.391 0.156c0.828 0.766 1.922 1.734 2.578 2.656 0.078 0.094 0.109 0.219 0.109 0.344 0 0.141-0.047 0.25-0.125 0.359-0.531 0.719-1.109 1.406-1.641 2.141 0.266 0.5 0.484 1.016 0.641 1.531l2.859 0.438c0.266 0.047 0.453 0.297 0.453 0.562z"></path>
-	</svg>
+		<div ng-if="balances.error">
+			<p>Error: {{balances.error}}</p>
 		</div>
-	  </header>
-	  <main>
-		
-		<section class="financial">
-			<h2>Exchange Balances</h2>
-			<div class="grid">
-				<div ng-repeat="(exchange, balances) in data track by $index">
-					<h2>{{exchange}}</h2>
-					<div ng-if="!balances.error">
-						<table>
-							<thead>
-								<tr>
-									<th>Currency</th>
-									<th>Amount</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="(currency, amount) in balances track by $index">
-									<td>{{currency}}</td>
-									<td>{{currency === 'USDT' ? (amount | usdFormat) : amount}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div ng-if="balances.error">
-						<p>Error: {{balances.error}}</p>
-					</div>
-				</div>
-			</div>
-		</section>
-	  </main>
 	</div>
 
 	<script>
@@ -107,5 +80,5 @@
 		});
 		
 	</script>
-	</body>
+</body>
 </html>
