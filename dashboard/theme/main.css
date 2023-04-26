@@ -16,6 +16,10 @@ body {
   background: linear-gradient(to left, #364670, #5c73b0);
 }
 
+table {
+	color: #fff;
+}
+
 h1, h2, h3, h4 {
   margin: 0;
 }
