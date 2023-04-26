@@ -34,7 +34,7 @@
 				<tbody>
 					<tr ng-repeat="(currency, amount) in balances track by $index">
 						<td>{{currency}}</td>
-						<td>{{amount}}</td>
+						<td>{{currency === 'USDT' ? (amount | usdFormat) : amount}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -61,6 +61,24 @@
 				console.error('Error fetching data:', error);
 			});
 		});
+		
+		app.filter('usdFormat', function() {
+			return function(input) {
+				if (!input) {
+					return input;
+				}
+		
+				var formatted = parseFloat(input).toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'USD',
+					minimumFractionDigits: 2,
+					maximumFractionDigits: 2
+				});
+		
+				return formatted;
+			};
+		});
+		
 	</script>
 </body>
 </html>
