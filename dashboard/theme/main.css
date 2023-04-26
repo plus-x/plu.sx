@@ -1,0 +1,238 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --grid: #1c233b;
+  --radius: 5px;
+  --shadow-1: -10px 15px 10px 2px rgba(0, 0, 0, .3);
+  --shadow-2: -25px 260px 20px 28px rgba(0, 0, 0, .15);
+  display: grid;
+  height: 100%;
+}
+
+body {
+  margin: auto;
+  background: linear-gradient(to left, #364670, #5c73b0);
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+svg {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  fill: #a2aacd;
+}
+
+.board {
+  width: 80vw;
+  height: 80vh;
+  padding: 10px;
+  background: #242E4C;
+  border-left: solid 3px #2D3A5E;
+  border-bottom: solid 3px #232531;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1), var(--shadow-2);
+  transform: perspective(1000px) rotateX(30deg) rotateY(25deg) rotateZ(-20deg) translateY(-80px);
+  transform-style: preserve-3d;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 50px;
+  height: 160px;
+  background: #455584;
+  transform: translate3d(-20px, 220px, 20px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: solid 3px #334266;
+  border-bottom: solid 3px #334266;
+  overflow: hidden;
+}
+.nav button {
+  flex: 1;
+  display: block;
+  background: transparent;
+  border: 0;
+  border-bottom: solid thin #334266;
+}
+.nav button:focus {
+  outline-width: thin;
+}
+.nav button[data-active] {
+  background: #374469;
+}
+.nav button[data-active] svg {
+  fill: #eee;
+}
+
+header, main {
+  width: 75%;
+  margin: 40px auto;
+}
+
+header, .head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.head h4 {
+  color: #5b70c3;
+}
+
+main {
+  display: grid;
+  height: 80%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 50px;
+}
+
+h2 {
+  color: #fff;
+  font-size: 16px;
+}
+
+.logo h1 {
+  font-size: 14px;
+  color: #eee;
+}
+.logo span {
+  color: #6484d5;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  color: #a2aacd;
+}
+.account > * {
+  margin-left: 10px;
+}
+.account h4 {
+  font-size: 10px;
+}
+.account img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.profits ul {
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+.profits ul::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  border: solid thin #a2aacd;
+  border-radius: 4px;
+  opacity: 0.3;
+  will-change: transform;
+  -webkit-animation: scroll-list 5s infinite;
+		  animation: scroll-list 5s infinite;
+  -webkit-animation-timing-function: step(3, end);
+		  animation-timing-function: step(3, end);
+}
+.profits li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  color: #eee;
+}
+.profits h4, .profits output {
+  font-size: 12px;
+}
+.profits time {
+  font-size: 10px;
+  font-weight: bold;
+  color: #a2aacd;
+}
+.profits output {
+  font-weight: bold;
+}
+
+.investments ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.investments li {
+  display: flex;
+  justify-content: space-around;
+  font-size: 11px;
+  padding: 20px;
+  color: #eee;
+}
+.investments li:first-of-type {
+  padding: 10px;
+  color: #424c7b;
+}
+.investments li:nth-of-type(3) {
+  border-radius: 4px;
+  background: linear-gradient(to left, #242E4C, #34436f);
+  background-clip: border-box;
+  box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.2);
+  border-left: solid 4px rgba(255, 255, 255, 0.08);
+}
+
+.grid {
+  --size-1: 49px;
+  --size-2: 48px;
+  position: relative;
+  height: 80%;
+  margin: 20px 0 0 25px;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent var(--size-2), var(--grid) var(--size-2), var(--grid) var(--size-1)), repeating-linear-gradient(-90deg, transparent, transparent var(--size-2), var(--grid) var(--size-2), var(--grid) var(--size-1));
+  background-size: var(--size-1) var(--size-1);
+}
+.grid > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  left: -25px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 10px;
+  font-weight: bold;
+  color: #424c7b;
+}
+
+.credit {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #a2aacd;
+}
+.credit a {
+  color: #6673ad;
+  text-decoration: none;
+}
+
+@-webkit-keyframes scroll-list {
+  33% {
+	transform: translate3d(0, 62px, 10px);
+  }
+  66% {
+	transform: translate3d(0, 124px, 10px);
+  }
+}
+
+@keyframes scroll-list {
+  33% {
+	transform: translate3d(0, 62px, 10px);
+  }
+  66% {
+	transform: translate3d(0, 124px, 10px);
+  }
+}
