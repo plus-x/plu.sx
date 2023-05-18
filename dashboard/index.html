@@ -20,7 +20,7 @@
 	</style>
 </head>
 <body ng-controller="balancesController">
-	<h1>Exchange Balances</h1>
+	<h1>Exchange Balances*</h1>
 	<div ng-repeat="(exchange, balances) in data track by $index">
 		<h2>{{exchange}}</h2>
 		<div ng-if="!balances.error">
