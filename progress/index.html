@@ -9,18 +9,45 @@
 				margin: 0;
 				padding: 0;
 			}
-		
-			/* Set up full-height layout with centered content */
-			html, body {
-				height: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-		</style>
 	</head>
 	<body>
 		<!-- From https://community.atlassian.com/t5/Trello-questions/How-can-I-embed-a-Trello-board-onto-my-website/qaq-p/1369992 - https://jsfiddle.net/1dv48rny/ -->
 		<script src="https://trello.com/b/B9CSgA7l.js"></script>
+		
+		<script>
+			// Function to modify the parent div's dimensions
+			function modifyParentDiv(element) {
+				if (element) {
+					const parentDiv = element.parentNode;
+					if (parentDiv) {
+						parentDiv.style.width = '100%';
+						parentDiv.style.height = '100vh'; // 100% of the viewport height
+						console.log('Parent div style updated!');
+					}
+				}
+			}
+			
+			// Callback function to execute when mutations are observed
+			const callback = function(mutationsList, observer) {
+				for (const mutation of mutationsList) {
+					if (mutation.type === 'childList') {
+						mutation.addedNodes.forEach(node => {
+							if (node.id === 'trello-board-B9CSgA7l') {
+								modifyParentDiv(node);
+								observer.disconnect(); // Stop observing once the div is modified
+							}
+						});
+					}
+				}
+			};
+			
+			// Create an observer instance linked to the callback function
+			const observer = new MutationObserver(callback);
+			
+			// Start observing the document body for DOM changes
+			observer.observe(document.body, { childList: true, subtree: true });
+			
+			console.log('Observer set up to monitor DOM changes.');
+		</script>
 	</body>
 </html>
