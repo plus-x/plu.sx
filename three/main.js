@@ -25,8 +25,8 @@ controls.enableZoom = true;
 
 // Create materials with textures
 const loader = new THREE.TextureLoader();
-const texturePlus = loader.load('+.png');
-const textureCross = loader.load('x.png');
+const texturePlus = loader.load('public/+.png');
+const textureCross = loader.load('public/x.png');
 
 const materialPlus = new THREE.MeshBasicMaterial({ map: texturePlus });
 const materialCross = new THREE.MeshBasicMaterial({ map: textureCross });
