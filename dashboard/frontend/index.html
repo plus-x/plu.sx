@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xFund Dashboard</title>
+    <style>
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin: 0; background: #0b1020; color:#e6e8ef; }
+      .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+      .card { background:#131a33; border:1px solid #2b3566; border-radius:16px; padding:16px; margin: 16px 0; box-shadow: 0 8px 30px rgba(0,0,0,0.2)}
+      .row { display:flex; gap:16px; flex-wrap: wrap; }
+      .col { flex:1; min-width: 300px; }
+      button { background:#3a5bd9; color:white; border:none; border-radius:12px; padding:10px 14px; cursor:pointer; font-weight:600}
+      button:disabled { opacity:.6; cursor:not-allowed}
+      input, select { background:#0f1630; border:1px solid #2b3566; color:#e6e8ef; padding:8px 10px; border-radius:8px; }
+      table { width:100%; border-collapse: collapse; font-size:14px}
+      th, td { padding:8px; border-bottom: 1px solid #2b3566 }
+      .loadingbar { height: 4px; width: 100%; background: #0f1630; border-radius: 999px; overflow: hidden; margin: 8px 0 16px }
+      .loadingbar div { height: 100%; width: 40%; background: #3a5bd9; animation: load 1.2s infinite }
+      @keyframes load { 0%{transform:translateX(-100%)} 50%{transform:translateX(120%)} 100%{transform:translateX(-100%)} }
+      .pill { display:inline-block; padding:2px 8px; border-radius:999px; background:#1d274f; border:1px solid #2b3566; font-size:12px; }
+      .grid2 { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px }
+      @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr } }
+      .footer { opacity:.7; font-size:12px; margin-top: 16px }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
