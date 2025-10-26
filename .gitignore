@@ -2,3 +2,7 @@
 _*
 *.sass-cache/*
 *.scssc
+
+# Virtual environments
+.venv/
+venv/
