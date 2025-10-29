@@ -10,7 +10,12 @@ from config import CONFIG, NETWORK_PREF, SIMULATE_DEFAULT
 
 load_dotenv()
 
-API_KEY = os.getenv("PLUSX_API_KEY", "") or os.getenv("API_KEY", "")
+# Primary API key comes from Doppler via PLUX_API_KEY; fall back to legacy env names.
+API_KEY = (
+    os.getenv("PLUX_API_KEY", "")
+    or os.getenv("PLUSX_API_KEY", "")
+    or os.getenv("API_KEY", "")
+)
 
 # --- Minimal auth dependency ---
 def require_api_key(x_api_key: Optional[str] = Header(None)):
@@ -47,6 +52,11 @@ def load_state() -> Dict[str, Any]:
 
 def save_state(state: Dict[str, Any]):
     STATE_FILE.write_text(json.dumps(state))
+
+
+@app.get("/api/config")
+def get_config():
+    return {"apiKey": API_KEY}
 
 # --- CCXT helpers ---
 def make_exchange(name: str):

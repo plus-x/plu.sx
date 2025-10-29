@@ -53,7 +53,28 @@ export default function App() {
     }
   }
 
-  useEffect(() => { refresh() }, [])
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const resp = await fetch(`${API_URL}/api/config`)
+        if (!resp.ok) return
+        const data = await resp.json()
+        if (!cancelled && data?.apiKey) {
+          setApiKey(data.apiKey)
+          localStorage.setItem('xfund_api_key', data.apiKey)
+        }
+      } catch (err) {
+        console.warn('Failed to load config', err)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  useEffect(() => {
+    if (!apiKey) return
+    refresh()
+  }, [apiKey])
 
   const fmtSecs = (s) => {
     const h = Math.floor(s/3600)
