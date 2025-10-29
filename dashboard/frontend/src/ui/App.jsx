@@ -121,7 +121,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>xFund Dashboard</h1>
+      <h1>xFund Dashboard v0.01 alpha</h1>
       <div className="card">
         <div className="row" style={{alignItems:'center', gap:12}}>
           <div className="col" style={{maxWidth:340}}>
