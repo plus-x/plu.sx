@@ -10,12 +10,17 @@ from config import CONFIG, NETWORK_PREF, SIMULATE_DEFAULT
 
 load_dotenv()
 
-# Primary API key comes from Doppler via PLUX_API_KEY; fall back to legacy env names.
-API_KEY = (
-    os.getenv("PLUX_API_KEY", "")
-    or os.getenv("PLUSX_API_KEY", "")
-    or os.getenv("API_KEY", "")
-)
+
+def current_api_key() -> str:
+    """Return the active API key from the environment."""
+    return (
+        os.getenv("PLUSX_API_KEY", "")
+        or os.getenv("PLUSX_API_KEY", "")
+        or os.getenv("API_KEY", "")
+    )
+
+
+API_KEY = current_api_key()
 
 # --- Minimal auth dependency ---
 def require_api_key(x_api_key: Optional[str] = Header(None)):
@@ -56,7 +61,7 @@ def save_state(state: Dict[str, Any]):
 
 @app.get("/api/config")
 def get_config():
-    return {"apiKey": API_KEY}
+    return {"apiKey": current_api_key()}
 
 # --- CCXT helpers ---
 def make_exchange(name: str):

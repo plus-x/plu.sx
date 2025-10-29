@@ -68,6 +68,7 @@ export default function App() {
         }
       } catch (err) {
         console.warn('Failed to load config', err)
+        if (!cancelled) setNote('Unable to load API key from backend.')
       }
     })()
     return () => { cancelled = true }
