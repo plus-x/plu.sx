@@ -23,6 +23,7 @@ function useApi(key) {
 
 export default function App() {
   const [apiKey, setApiKey] = useState(localStorage.getItem('xfund_api_key') || '')
+  const [backendKey, setBackendKey] = useState('')
   const [balances, setBalances] = useState(null)
   const [trades, setTrades] = useState(null)
   const [deadman, setDeadman] = useState(null)
@@ -61,6 +62,7 @@ export default function App() {
         if (!resp.ok) return
         const data = await resp.json()
         if (!cancelled && data?.apiKey) {
+          setBackendKey(data.apiKey)
           setApiKey(data.apiKey)
           localStorage.setItem('xfund_api_key', data.apiKey)
         }
@@ -121,12 +123,12 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>xFund Dashboard v0.01 alpha</h1>
+      <h1>xFund Dashboard v0.02 alpha</h1>
       <div className="card">
         <div className="row" style={{alignItems:'center', gap:12}}>
           <div className="col" style={{maxWidth:340}}>
             <label>API Key</label><br/>
-            <input value={apiKey} onChange={e=>setApiKey(e.target.value)} placeholder="X-API-Key" style={{width:'100%', marginTop:6}}/>
+            <input value={apiKey} onChange={e=>setApiKey(e.target.value)} placeholder={backendKey || 'X-API-Key'} style={{width:'100%', marginTop:6}}/>
           </div>
           <div><button onClick={saveKey}>Save</button></div>
           <div><button onClick={refresh}>Refresh</button></div>
