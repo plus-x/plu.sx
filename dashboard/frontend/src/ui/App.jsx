@@ -125,6 +125,7 @@ export default function App() {
   return (
     <div className="container">
       <h1>xFund Dashboard v0.02 alpha</h1>
+      <div>PLUSX_API_KEY: {backendKey}</div>
       <div className="card">
         <div className="row" style={{alignItems:'center', gap:12}}>
           <div className="col" style={{maxWidth:340}}>
